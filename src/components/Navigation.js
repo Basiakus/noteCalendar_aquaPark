@@ -7,7 +7,8 @@ class Navigation extends Component {
 	state = {
 		year: null,
 		month: 0,
-		date: null
+		date: null,
+		currentDay: null
 	}
 
 	nextMonth = () => {
@@ -60,6 +61,15 @@ class Navigation extends Component {
 		});
 	}
 
+	setCurrentDay = (day) => {
+		const newDay = parseInt(day);
+		this.setState({
+			currentDay: newDay
+		});
+		//set current day from a storage 
+		localStorage.setItem('currentDay', JSON.stringify(newDay));
+	}
+
 	componentWillMount() {
 		const today = new Date();
 		let date;
@@ -79,8 +89,12 @@ class Navigation extends Component {
 		this.setState({
 			year: currentYear,
 			month: currentMonth,
-			date: date
+			date: date,
+			//get current day from a storage after refreshing page
+			currentDay: JSON.parse(localStorage.getItem('currentDay'))
+
 		});
+		//get current day from a storage after refreshing page
 	}
 
 	render() {
@@ -93,7 +107,7 @@ class Navigation extends Component {
 					
 					<li onClick={this.nextMonth}>next</li>
 				</ul>
-				{React.cloneElement(this.props.children, {state: this.state})}
+				{React.cloneElement(this.props.children, {state: this.state, setCurrentDay: this.setCurrentDay})}
 			</div>
 		);
 	}

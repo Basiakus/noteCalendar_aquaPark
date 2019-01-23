@@ -50,21 +50,27 @@ body {
 			align-items: center;
 			.dayMiniature {
 				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-direction: column;
 				width: 10%;
 				height: 16%;
 				margin: 1%;
-				p {
-					margin: 6%;
-					text-transform: capitalize;
-					font-size: 1.2em;
-				}
-				span {
-					color: red;
-					font-size: 1.5em;
-					font-weight: bold;
+				a {	
+					width: 100%;
+					text-decoration: none;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+
+					p {
+						margin: 6%;
+						text-transform: capitalize;
+						font-size: 1.2em;
+					}
+					span {
+						color: red;
+						font-size: 1.5em;
+						font-weight: bold;
+					}
 				}
 			}
 		}
@@ -74,6 +80,16 @@ body {
 			align-items: center;
 			width: 90%;
 			height: 80%;
+			flex-direction: column;
+			p {
+				font-size: 2.2em;
+				text-transform: capitalize;
+			}
+			span {
+				font-size: 4.5em;
+				color: red;
+			}
+
 		}
 	}
 }

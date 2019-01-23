@@ -10,7 +10,7 @@ class Content extends Component {
 		const {year, month} = this.props.state;
 		return (
 			<div className='content'>
-				{Object.keys(daysToArray).map( (day, i) => <DayMiniature id={`${day}${month}${year}`} year={year} key={day} index={day}/> )}
+				{Object.keys(daysToArray).map( (day, i) => <DayMiniature id={`${day}${month}${year}`} year={year} key={day} index={day} {...this.props}/> )}
 			</div>
 		);
 	}
