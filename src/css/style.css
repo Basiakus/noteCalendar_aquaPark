@@ -12,14 +12,14 @@ body {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column; }
-    body .navigation ul {
+    body .navigation > ul {
       padding: 0;
       display: flex;
       width: 60%;
       height: 10%;
       list-style-type: none;
       overflow: hidden; }
-      body .navigation ul li {
+      body .navigation > ul li {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -28,13 +28,13 @@ body {
         padding: 3%;
         user-select: none;
         text-transform: uppercase; }
-        body .navigation ul li:nth-child(2) {
+        body .navigation > ul li:nth-child(2) {
           flex: 3;
           font-size: 1.5em;
           font-weight: bold; }
-          body .navigation ul li:nth-child(2) a {
+          body .navigation > ul li:nth-child(2) a {
             text-decoration: none; }
-        body .navigation ul li:nth-child(odd) {
+        body .navigation > ul li:nth-child(odd) {
           cursor: pointer; }
     body .navigation .content {
       display: flex;
@@ -71,8 +71,8 @@ body {
       height: 80%;
       flex-direction: column; }
       body .navigation .day p {
-        font-size: 2.2em;
+        font-size: 1.2em;
         text-transform: capitalize; }
-      body .navigation .day span {
-        font-size: 4.5em;
-        color: red; }
+        body .navigation .day p span {
+          font-size: 2.5em;
+          color: red; }

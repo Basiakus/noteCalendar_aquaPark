@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import DayMiniature from './DayMiniature';
 
-
-
 class Content extends Component {
 	render() {
 		// Generate a array from number of days from state

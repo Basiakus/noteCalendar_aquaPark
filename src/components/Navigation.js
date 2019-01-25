@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getMonth } from '../helpers';
 import { Link } from 'react-router';
+import posts from '../data/posts.js';
 
 class Navigation extends Component {
 
@@ -8,7 +9,8 @@ class Navigation extends Component {
 		year: null,
 		month: 0,
 		date: null,
-		currentDay: null
+		currentDay: null,
+		posts: []
 	}
 
 	nextMonth = () => {
@@ -70,11 +72,21 @@ class Navigation extends Component {
 		localStorage.setItem('currentDay', JSON.stringify(newDay));
 	}
 
+	addPost = (text, dayId, uuIdDay) => {
+		const post = {
+			text,
+			dayId,
+			uuIdDay
+		}
+		this.setState({ posts: [...this.state.posts, post]})
+	}
+
 	componentWillMount() {
 		const today = new Date();
 		let date;
 		const currentYear = today.getFullYear();
 		const currentMonth = today.getMonth() +1;
+		const dataPosts = [...posts];
 		if(currentMonth < 1){
 			date = 31;
 		} else {
@@ -91,10 +103,10 @@ class Navigation extends Component {
 			month: currentMonth,
 			date: date,
 			//get current day from a storage after refreshing page
-			currentDay: JSON.parse(localStorage.getItem('currentDay'))
+			currentDay: JSON.parse(localStorage.getItem('currentDay')),
+			posts: dataPosts
 
 		});
-		//get current day from a storage after refreshing page
 	}
 
 	render() {
@@ -107,7 +119,7 @@ class Navigation extends Component {
 					
 					<li onClick={this.nextMonth}>next</li>
 				</ul>
-				{React.cloneElement(this.props.children, {state: this.state, setCurrentDay: this.setCurrentDay})}
+				{React.cloneElement(this.props.children, {state: this.state, setCurrentDay: this.setCurrentDay, addPost: this.addPost})}
 			</div>
 		);
 	}
