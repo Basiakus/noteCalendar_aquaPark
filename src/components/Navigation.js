@@ -77,8 +77,17 @@ class Navigation extends Component {
 			text,
 			dayId,
 			uuIdDay
-		}
-		this.setState({ posts: [...this.state.posts, post]})
+		};
+		
+		this.setState({ posts: [...this.state.posts, post]});
+	}
+
+	deletePost = (uuId) => {
+		const posts = [...this.state.posts];
+		const newPosts = posts.filter( post => post.uuIdDay !== uuId );
+		this.setState({
+			posts: newPosts
+		});
 	}
 
 	componentWillMount() {
@@ -104,9 +113,14 @@ class Navigation extends Component {
 			date: date,
 			//get current day from a storage after refreshing page
 			currentDay: JSON.parse(localStorage.getItem('currentDay')),
-			posts: dataPosts
+			posts: JSON.parse(localStorage.getItem('posts')) || dataPosts
 
 		});
+	}
+
+	componentDidUpdate() {
+		const currentPosts = [...this.state.posts]
+		localStorage.setItem('posts', JSON.stringify(currentPosts));
 	}
 
 	render() {
@@ -119,7 +133,14 @@ class Navigation extends Component {
 					
 					<li onClick={this.nextMonth}>next</li>
 				</ul>
-				{React.cloneElement(this.props.children, {state: this.state, setCurrentDay: this.setCurrentDay, addPost: this.addPost})}
+				{React.cloneElement(this.props.children, 
+					{
+						state: this.state, 
+						setCurrentDay: this.setCurrentDay, 
+						addPost: this.addPost,
+						deletePost: this.deletePost
+					}
+				)}
 			</div>
 		);
 	}

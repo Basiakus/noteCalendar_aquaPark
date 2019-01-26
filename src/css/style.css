@@ -7,7 +7,7 @@ body {
   padding: 0; }
   body .navigation {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -65,14 +65,45 @@ body {
             font-weight: bold; }
     body .navigation .day {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       width: 90%;
       height: 80%;
       flex-direction: column; }
       body .navigation .day p {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
         font-size: 1.2em;
         text-transform: capitalize; }
         body .navigation .day p span {
-          font-size: 2.5em;
+          margin-left: 5%;
+          font-size: 1.5em;
           color: red; }
+      body .navigation .day form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 5% 0; }
+        body .navigation .day form textarea {
+          width: 100%;
+          text-align: center;
+          height: 60%;
+          background-color: #ccebff; }
+        body .navigation .day form input {
+          width: 100%;
+          padding: 1% 0;
+          background-color: #80ccff; }
+      body .navigation .day ul.postList {
+        width: 90%;
+        text-align: center;
+        padding: 0;
+        margin: 0; }
+        body .navigation .day ul.postList li {
+          display: flex;
+          justify-content: space-between;
+          margin: 3% 0; }
