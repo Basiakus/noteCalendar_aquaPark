@@ -39,9 +39,15 @@ class Day extends Component {
 				<ul className="postList">
 				wiadomości zapisane:
 
-
-
-					{ dayPosts.map( (post, i) => <Post key={post.uuIdDay} id={post.uuIdDay} index={i} text={post.text} {...this.props}/>) }
+					{ dayPosts.map( (post, i) => 
+						<Post 
+							key={post.uuIdDay} 
+							id={post.uuIdDay} 
+							index={i} 
+							details={dayPosts[i]} 
+							{...this.props}
+						/>
+					)}
 				</ul>
 
 			</div>

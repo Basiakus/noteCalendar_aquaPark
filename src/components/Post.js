@@ -10,7 +10,7 @@ class Post extends Component {
 		return (
 			<li>
 				<span>{this.props.index + 1}</span>
-				<span>{this.props.text}</span>
+				<span>{this.props.details.text}</span>
 				<span className="delete" id={this.props.id} onClick={this.handleDelete}>x</span>
 			</li>
 		);

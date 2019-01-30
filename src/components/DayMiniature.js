@@ -10,7 +10,7 @@ class DayMiniature extends Component {
 	render() {
 		return (
 			<div className='dayMiniature' onClick={(this.handleClick)}>
-				<Link to={`/day/${this.props.id}`}><p>dzień</p> <span>{Number(this.props.index) + 1}</span></Link>
+				<Link to={`/day/${this.props.id}`}>{this.props.setDayName()}<span>{Number(this.props.index) + 1}</span></Link>
 			</div>
 		);
 	}

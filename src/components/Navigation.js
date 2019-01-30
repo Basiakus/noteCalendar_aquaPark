@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { getMonth } from '../helpers';
 import { Link } from 'react-router';
-import posts from '../data/posts.js';
+//import posts from '../data/posts.js';
+import base from '../base.js';
 
 class Navigation extends Component {
 
@@ -11,6 +12,46 @@ class Navigation extends Component {
 		date: null,
 		currentDay: null,
 		posts: []
+	}
+
+	componentWillMount() {
+		const today = new Date();
+		let date;
+		const currentYear = today.getFullYear();
+		const currentMonth = today.getMonth() +1;
+		//const dataPosts = posts;
+		if(currentMonth < 1){
+			date = 31;
+		} else {
+			if(currentMonth === 2){
+				date = 28
+			} else if(currentMonth === 1 || currentMonth === 3 || currentMonth === 5 || currentMonth === 7 || currentMonth === 8 || currentMonth === 10 || currentMonth === 12) {
+				date = 31;
+			} else {
+				date = 30;
+			}
+		}
+		this.setState({
+			year: currentYear,
+			month: currentMonth,
+			date: date,
+			//get current day from a storage after refreshing page
+			currentDay: JSON.parse(localStorage.getItem('currentDay')),
+			//posts: dataPosts
+
+		});
+	}
+
+	componentDidMount() {
+		this.ref = base.syncState('messages', {
+			context: this,
+			state: "posts",
+			asArray: true
+		});
+	}
+
+	componentWilUnmount() {
+		base.removeBinding(this.ref);
 	}
 
 	nextMonth = () => {
@@ -72,6 +113,9 @@ class Navigation extends Component {
 		localStorage.setItem('currentDay', JSON.stringify(newDay));
 	}
 
+	setDayName = (month, day, year) => {
+	}
+
 	addPost = (text, dayId, uuIdDay) => {
 		const post = {
 			text,
@@ -90,38 +134,6 @@ class Navigation extends Component {
 		});
 	}
 
-	componentWillMount() {
-		const today = new Date();
-		let date;
-		const currentYear = today.getFullYear();
-		const currentMonth = today.getMonth() +1;
-		const dataPosts = [...posts];
-		if(currentMonth < 1){
-			date = 31;
-		} else {
-			if(currentMonth === 2){
-				date = 28
-			} else if(currentMonth === 1 || currentMonth === 3 || currentMonth === 5 || currentMonth === 7 || currentMonth === 8 || currentMonth === 10 || currentMonth === 12) {
-				date = 31;
-			} else {
-				date = 30;
-			}
-		}
-		this.setState({
-			year: currentYear,
-			month: currentMonth,
-			date: date,
-			//get current day from a storage after refreshing page
-			currentDay: JSON.parse(localStorage.getItem('currentDay')),
-			posts: JSON.parse(localStorage.getItem('posts')) || dataPosts
-
-		});
-	}
-
-	componentDidUpdate() {
-		const currentPosts = [...this.state.posts]
-		localStorage.setItem('posts', JSON.stringify(currentPosts));
-	}
 
 	render() {
 		return (
@@ -138,7 +150,8 @@ class Navigation extends Component {
 						state: this.state, 
 						setCurrentDay: this.setCurrentDay, 
 						addPost: this.addPost,
-						deletePost: this.deletePost
+						deletePost: this.deletePost,
+						setDayName: this.setDayName
 					}
 				)}
 			</div>
