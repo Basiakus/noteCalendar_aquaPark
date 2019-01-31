@@ -113,7 +113,9 @@ class Navigation extends Component {
 		localStorage.setItem('currentDay', JSON.stringify(newDay));
 	}
 
-	setDayName = (month, day, year) => {
+	setDayName = (dateString) => {
+		const date = new Date(dateString);
+		return date.toLocaleDateString('pl-PL', { weekday: 'long' });    
 	}
 
 	addPost = (text, dayId, uuIdDay) => {
