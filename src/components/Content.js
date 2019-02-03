@@ -14,7 +14,7 @@ class Content extends Component {
 						key={day} index={day} 
 						{...this.props}
 					/> 
-				)};
+				)}
 			</div>
 		);
 	}

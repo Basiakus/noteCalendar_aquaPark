@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getMonth } from '../helpers';
 import { Link } from 'react-router';
-//import posts from '../data/posts.js';
 import base from '../base.js';
 
 class Navigation extends Component {
@@ -10,7 +9,7 @@ class Navigation extends Component {
 		year: null,
 		month: 0,
 		date: null,
-		currentDay: null,
+		selectedDay: null,
 		posts: []
 	}
 
@@ -36,7 +35,7 @@ class Navigation extends Component {
 			month: currentMonth,
 			date: date,
 			//get current day from a storage after refreshing page
-			currentDay: JSON.parse(localStorage.getItem('currentDay')),
+			selectedDay: JSON.parse(localStorage.getItem('selectedDay')),
 			//posts: dataPosts
 
 		});
@@ -104,19 +103,22 @@ class Navigation extends Component {
 		});
 	}
 
+	setDayName = (dateString) => {
+		const date = new Date(dateString);
+		return date.toLocaleDateString('pl-PL', { weekday: 'short' });    
+	}
+	
 	setCurrentDay = (day) => {
 		const newDay = parseInt(day);
 		this.setState({
-			currentDay: newDay
+			selectedDay: newDay
 		});
 		//set current day from a storage 
-		localStorage.setItem('currentDay', JSON.stringify(newDay));
+		localStorage.setItem('selectedDay', JSON.stringify(newDay));
+		const date = new Date();
+		const today = date.getDate();
 	}
 
-	setDayName = (dateString) => {
-		const date = new Date(dateString);
-		return date.toLocaleDateString('pl-PL', { weekday: 'long' });    
-	}
 
 	addPost = (text, dayId, uuIdDay) => {
 		const post = {
@@ -136,16 +138,15 @@ class Navigation extends Component {
 		});
 	}
 
-
 	render() {
 		return (
 			<div className='navigation'>
 				<ul>
-					<li onClick={this.prevMonth}>prev</li>
+					<li onClick={this.prevMonth}>&#x2190;</li>
 					
 					<li><Link to='/'><span>{ getMonth(this.state.month) }</span> <span>{ this.state.year }</span></Link></li>
 					
-					<li onClick={this.nextMonth}>next</li>
+					<li onClick={this.nextMonth}>&#x2192;</li>
 				</ul>
 				{React.cloneElement(this.props.children, 
 					{
