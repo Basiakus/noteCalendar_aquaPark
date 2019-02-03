@@ -5,10 +5,6 @@ import { Link } from 'react-router';
 class DayMiniature extends Component {
 
 
-	handleClick = () => {
-		this.props.setCurrentDay(this.props.index);
-	}
-
 	render() {
 		//check if specific day have a messages
 		const check = this.props.state.posts.findIndex(post => post.dayId === this.props.id);
@@ -38,7 +34,6 @@ class DayMiniature extends Component {
 
 
 				} 
-				onClick={(this.handleClick)}
 			>
 				<Link to={`/day/${this.props.id}`}>
 					<span>{Number(this.props.index) + 1}</span>

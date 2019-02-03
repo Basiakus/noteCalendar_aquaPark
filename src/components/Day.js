@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Post from './Post';
 import MiniCalendar from './MiniCalendar';
 import uuid from 'uuid/v4';
-//{this.props.setDayName(`${this.props.state.month}/${parseInt(this.props.state.selectedDay) + 1}/${this.props.state.year}`)}
 
 class Day extends Component {
 
@@ -32,20 +31,19 @@ class Day extends Component {
 		 day needed to display day's name witout using data from state 
 		 (*wrong display after using navigation arrows)*/   
 		const dayId = this.props.params.dayId;
-		const dayFromDayId = parseInt(dayId.slice(0, 1)) + 1;
-		const monthFromDayId = dayId.slice(1, 2);
-		const yearFromDayId = dayId.slice(2);
-		//console.log(dayPosts);
+		const dayFromDayId = parseInt(dayId.slice(0, 2));
+		const monthFromDayId = dayId.slice(3, 4);
+		const yearFromDayId = dayId.slice(4);
 		return (
 			<div className='day'>
 				
 				<MiniCalendar {...this.props}/>
 
 				<span>
-					<h2>{dayFromDayId}</h2>
+					<h2>{dayFromDayId + 1}</h2>
 					<h3>
 						{this.props.setDayName(
-							`${monthFromDayId}/${dayFromDayId}/${yearFromDayId}`
+							`${monthFromDayId}/${dayFromDayId + 1}/${yearFromDayId}`
 						)}
 					</h3>
 				</span>

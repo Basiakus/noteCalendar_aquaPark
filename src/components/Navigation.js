@@ -108,18 +108,6 @@ class Navigation extends Component {
 		return date.toLocaleDateString('pl-PL', { weekday: 'short' });    
 	}
 	
-	setCurrentDay = (day) => {
-		const newDay = parseInt(day);
-		this.setState({
-			selectedDay: newDay
-		});
-		//set current day from a storage 
-		localStorage.setItem('selectedDay', JSON.stringify(newDay));
-		const date = new Date();
-		const today = date.getDate();
-	}
-
-
 	addPost = (text, dayId, uuIdDay) => {
 		const post = {
 			text,
@@ -151,7 +139,6 @@ class Navigation extends Component {
 				{React.cloneElement(this.props.children, 
 					{
 						state: this.state, 
-						setCurrentDay: this.setCurrentDay, 
 						addPost: this.addPost,
 						deletePost: this.deletePost,
 						setDayName: this.setDayName

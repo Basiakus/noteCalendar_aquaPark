@@ -12,7 +12,7 @@ class MiniCalendar extends Component {
 					<DayMiniCalendar 
 						key={day} 
 						index={day}
-						id={`${day}${month}${year}`} 
+						id={`${day < 10 ? '0' + day : day}${month < 10 ? '0' + month : month}${year}`} 
 						{...this.props}
 					/>
 				)}

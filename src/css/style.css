@@ -63,7 +63,7 @@ body {
       display: flex;
       flex-wrap: wrap;
       flex: 9;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center; }
       body .navigation .content .dayMiniatureWithMessage {
         box-shadow: 0px 0px 20px 5px #00ff00; }
@@ -74,7 +74,9 @@ body {
         body .navigation .content .dayMiniatureSaturday a span {
           color: red; }
       body .navigation .content .dayMiniatureSunday {
-        background-color: red; }
+        background-color: red;
+        page-break-after: always;
+        break-after: always; }
         body .navigation .content .dayMiniatureSunday a span {
           color: white; }
     body .navigation .day {

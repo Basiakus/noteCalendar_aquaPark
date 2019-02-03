@@ -9,8 +9,9 @@ class Content extends Component {
 		return (
 			<div className='content'>
 				{Object.keys(daysToArray).map( (day, i) => 
+
 					<DayMiniature 
-						id={`${day}${month}${year}`} 
+						id={`${day < 10 ? '0' + day : day}${month < 10 ? '0' + month : month}${year}`} 
 						key={day} index={day} 
 						{...this.props}
 					/> 
