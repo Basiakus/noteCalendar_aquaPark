@@ -34,6 +34,7 @@ class Day extends Component {
 		const dayFromDayId = parseInt(dayId.slice(0, 2));
 		const monthFromDayId = dayId.slice(3, 4);
 		const yearFromDayId = dayId.slice(4);
+		console.log(dayPosts);
 		return (
 			<div className='day'>
 				
@@ -55,7 +56,7 @@ class Day extends Component {
 
 				wiadomości zapisane:
 				<ul className="postList">
-					{ (dayPosts) ? dayPosts.map( (post, i) => 
+					{ dayPosts.length !== 0 ? dayPosts.map( (post, i) => 
 						<Post 
 							key={post.uuIdDay} 
 							id={post.uuIdDay} 
@@ -63,7 +64,7 @@ class Day extends Component {
 							details={dayPosts[i]} 
 							{...this.props}
 						/>
-					) : "brak wiadomości"}
+					) : <li>brak wiadomości</li>}
 				</ul>
 
 			</div>

@@ -20,15 +20,10 @@
 		align-items: center;
 		flex-direction: column;
 		color: black;
-		p {
-			margin: 6%;
-			text-transform: capitalize;
-			font-size: 1.2em;
-		}
 		span {
 			color: red;
 			font-size: 1.5em;
-			font-weight: bold;
+			font-weight: bold;text-transform: capitalize;
 		}
 	}
 }
@@ -128,12 +123,26 @@ body {
 					width: 2vw;
 					height: 2vw;
 					margin: 5px;
+					padding: 1%;
+					border-radius: 50%;
 					a {
 						text-decoration: none;
 						color: black;
 
 					}
-				} 
+				}
+				>div.isSaturday {
+					background-color: yellow;
+				}
+				>div.isSunday {
+					background-color: red;
+					a {
+						color: white;
+					}
+				}
+				>div.isMessage {
+					box-shadow: 0px 0px 20px 4px #00ff00;
+				}				 
 			}
 			span {
 				display: flex;
