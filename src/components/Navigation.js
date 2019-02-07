@@ -47,6 +47,12 @@ class Navigation extends Component {
 			state: "posts",
 			asArray: true
 		});
+
+		const date = new Date();
+		const today = date.getDate() - 1;
+		const month = date.getMonth() + 1;
+		const year = date.getFullYear();
+		this.props.router.push(`/day/${today < 10 ? '0' + today : today}${month < 10 ? '0' + month : month}${year}`);
 	}
 
 	componentWilUnmount() {

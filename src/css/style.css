@@ -71,9 +71,7 @@ body {
         body .navigation .content .dayMiniatureSaturday a span {
           color: red; }
       body .navigation .content .dayMiniatureSunday {
-        background-color: red;
-        page-break-after: always;
-        break-after: always; }
+        background-color: red; }
         body .navigation .content .dayMiniatureSunday a span {
           color: white; }
     body .navigation .day {
@@ -105,7 +103,7 @@ body {
           body .navigation .day .miniCalendar > div.isSunday a {
             color: white; }
         body .navigation .day .miniCalendar > div.isMessage {
-          box-shadow: 0px 0px 20px 4px #00ff00; }
+          box-shadow: 0px 0px 15px 3px #00ff00; }
       body .navigation .day span {
         display: flex;
         flex: 1;
