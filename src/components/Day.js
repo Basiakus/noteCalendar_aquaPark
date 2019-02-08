@@ -5,22 +5,45 @@ import uuid from 'uuid/v4';
 
 class Day extends Component {
 
+	//defaultChecked for checkboxes
+	static defaultProps = {
+		handoverChecked: false,
+		lookbookChecked: false
+	};
+	// need state for checkbox value
+	state = {
+		handoverChecked: this.props.handoverChecked,
+		lookbookChecked: this.props.lookbookChecked
+	};
+
+	// References for text message to grab text and form to reset after submit
 	textRef = React.createRef();
 	formSubmitRef = React.createRef();
+
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const text = this.textRef.current.value;
 		const dayId = this.props.params.dayId;
 		const uuIdDay = uuid();
-		console.log(text, dayId, uuIdDay);
+		const handover = this.state.handoverChecked;
+		const lookbook = this.state.lookbookChecked;
+		console.log(text, dayId, uuIdDay, handover, lookbook);
 		if(text === '') {
 			alert('wiadomość nie może być pusta');
 			return;
 		} else {
-			this.props.addPost(text, dayId, uuIdDay);
+			this.props.addPost(text, dayId, uuIdDay, handover, lookbook);
 			this.refs.formSubmitRef.reset()
 		}
+	}
+
+	// handles for set curent value of checkboxes
+	handleChangeHandover = () => {
+		this.setState({handoverChecked: !this.state.handoverChecked});
+	}
+	handleChangeLookbook = () => {
+		this.setState({lookbookChecked: !this.state.lookbookChecked});
 	}
 
 	render() {
@@ -34,7 +57,7 @@ class Day extends Component {
 		const dayFromDayId = parseInt(dayId.slice(0, 2));
 		const monthFromDayId = dayId.slice(3, 4);
 		const yearFromDayId = dayId.slice(4);
-		console.log(dayPosts);
+		//console.log(dayPosts);
 		return (
 			<div className='day'>
 				
@@ -51,7 +74,11 @@ class Day extends Component {
 
 				<form ref='formSubmitRef' onSubmit={this.handleSubmit}>
 					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
-					<input type='submit' value='zapisz'/>
+					<div className="controls">
+						<label><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeHandover} />handover</label>
+						<label><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeLookbook} />lookbook</label>
+						<input type='submit' value='zapisz'/>
+					</div>
 				</form>
 
 				wiadomości zapisane:

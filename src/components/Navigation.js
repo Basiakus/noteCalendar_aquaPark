@@ -114,11 +114,13 @@ class Navigation extends Component {
 		return date.toLocaleDateString('pl-PL', { weekday: 'short' });    
 	}
 	
-	addPost = (text, dayId, uuIdDay) => {
+	addPost = (text, dayId, uuIdDay, handover, lookbook) => {
 		const post = {
 			text,
 			dayId,
-			uuIdDay
+			uuIdDay,
+			handover,
+			lookbook
 		};
 		
 		this.setState({ posts: [...this.state.posts, post]});
