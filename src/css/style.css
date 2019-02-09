@@ -24,6 +24,28 @@ body .navigation .content .dayMiniature, body .navigation .content .dayMiniature
       font-weight: bold;
       text-transform: capitalize; }
 
+body .navigation .day ul.allPostList, body .navigation .day ul.handoverPostList, body .navigation .day ul.lookbookPostList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 4.5;
+  overflow: scroll;
+  flex-direction: column;
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+  body .navigation .day ul.allPostList li, body .navigation .day ul.handoverPostList li, body .navigation .day ul.lookbookPostList li {
+    display: flex;
+    min-height: 30%;
+    width: 100%; }
+    body .navigation .day ul.allPostList li span.number, body .navigation .day ul.handoverPostList li span.number, body .navigation .day ul.lookbookPostList li span.number {
+      flex: 1; }
+    body .navigation .day ul.allPostList li span.text, body .navigation .day ul.handoverPostList li span.text, body .navigation .day ul.lookbookPostList li span.text {
+      flex: 8; }
+    body .navigation .day ul.allPostList li span.delete, body .navigation .day ul.handoverPostList li span.delete, body .navigation .day ul.lookbookPostList li span.delete {
+      flex: 1;
+      cursor: pointer; }
+
 body {
   margin: 0;
   padding: 0; }
@@ -122,23 +144,28 @@ body {
           flex: 5;
           text-align: center;
           background-color: #ccebff; }
-      body .navigation .day ul.postList {
+        body .navigation .day form .controls {
+          display: flex; }
+          body .navigation .day form .controls input, body .navigation .day form .controls label {
+            flex: 1;
+            text-align: center; }
+          body .navigation .day form .controls #handover {
+            background-color: orange; }
+          body .navigation .day form .controls #lookbook {
+            background-color: green; }
+      body .navigation .day span.listSelect {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 4.5;
-        overflow: scroll;
-        flex-direction: column;
-        text-align: center;
-        padding: 0;
-        margin: 0; }
-        body .navigation .day ul.postList li {
-          display: flex;
-          min-height: 30%;
-          width: 100%; }
-          body .navigation .day ul.postList li span.number {
-            flex: 1; }
-          body .navigation .day ul.postList li span.text {
-            flex: 8; }
-          body .navigation .day ul.postList li span.delete {
-            flex: 1; }
+        justify-content: space-between;
+        flex-direction: row; }
+      body .navigation .day ul.handoverPostList {
+        background-color: orange;
+        color: white; }
+      body .navigation .day ul.lookbookPostList {
+        background-color: green;
+        color: white; }
+      body .navigation .day ul.allPostListDeactive {
+        display: none; }
+      body .navigation .day ul.handoverPostListDeactive {
+        display: none; }
+      body .navigation .day ul.lookbookPostListDeactive {
+        display: none; }

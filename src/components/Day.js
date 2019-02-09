@@ -8,12 +8,14 @@ class Day extends Component {
 	//defaultChecked for checkboxes
 	static defaultProps = {
 		handoverChecked: false,
-		lookbookChecked: false
+		lookbookChecked: false,
+		postSelected: 'all'
 	};
 	// need state for checkbox value
 	state = {
 		handoverChecked: this.props.handoverChecked,
-		lookbookChecked: this.props.lookbookChecked
+		lookbookChecked: this.props.lookbookChecked,
+		postSelected: this.props.postSelected
 	};
 
 	// References for text message to grab text and form to reset after submit
@@ -21,7 +23,7 @@ class Day extends Component {
 	formSubmitRef = React.createRef();
 
 
-	handleSubmit = (e) => {
+	handleFormSubmit = (e) => {
 		e.preventDefault();
 		const text = this.textRef.current.value;
 		const dayId = this.props.params.dayId;
@@ -34,22 +36,30 @@ class Day extends Component {
 			return;
 		} else {
 			this.props.addPost(text, dayId, uuIdDay, handover, lookbook);
-			this.refs.formSubmitRef.reset()
+			this.refs.formSubmitRef.reset();
+			this.setState({handoverChecked: false});
+			this.setState({lookbookChecked: false});
 		}
 	}
 
-	// handles for set curent value of checkboxes
+	// handles for set curent value of checkboxes and option
 	handleChangeHandover = () => {
 		this.setState({handoverChecked: !this.state.handoverChecked});
 	}
 	handleChangeLookbook = () => {
 		this.setState({lookbookChecked: !this.state.lookbookChecked});
 	}
+	handleOptionChange = (event) => {
+		this.setState({postSelected: event.target.value});
+	}
 
 	render() {
-		// avaible posts from database / state which was written in specific Day
-		const dayPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId);
-
+		//instance of state about current list option
+		let currentListOption = this.state.postSelected;
+		// all avaible posts 
+		const allDayPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId);
+		const handoverPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.handover === true && post.lookbook === false);
+		const lookbookPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.lookbook === true && post.handover === false);
 		/* refactory dayId string to pieces which represent current
 		 day needed to display day's name witout using data from state 
 		 (*wrong display after using navigation arrows)*/   
@@ -72,26 +82,67 @@ class Day extends Component {
 					</h3>
 				</span>
 
-				<form ref='formSubmitRef' onSubmit={this.handleSubmit}>
+				<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
 					<div className="controls">
-						<label><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeHandover} />handover</label>
-						<label><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeLookbook} />lookbook</label>
+						<label id='handover' ><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeHandover} />handover</label>
+						<label id='lookbook' ><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeLookbook} />lookbook</label>
 						<input type='submit' value='zapisz'/>
 					</div>
 				</form>
 
-				wiadomości zapisane:
-				<ul className="postList">
-					{ dayPosts.length !== 0 ? dayPosts.map( (post, i) => 
-						<Post 
-							key={post.uuIdDay} 
-							id={post.uuIdDay} 
-							index={i} 
-							details={dayPosts[i]} 
-							{...this.props}
-						/>
-					) : <li>brak wiadomości</li>}
+				<span className="listSelect">
+					<p>wiadomości zapisane:</p>
+					<select value={this.state.postSelected} onChange={this.handleOptionChange}>
+						<option value="all">all</option>
+						<option value="handover">handover</option>
+						<option value="lookbook">lookbook</option>
+					</select>
+				</span>
+
+				<ul className={currentListOption === 'all' ? 'allPostList' : 'allPostListDeactive'}>
+					{ allDayPosts.length !== 0 ? 
+						allDayPosts.map( (post, i) => 
+							<Post 
+								key={post.uuIdDay} 
+								id={post.uuIdDay} 
+								index={i} 
+								details={allDayPosts[i]} 
+								{...this.props}
+							/>
+						) : 
+						<li>brak wiadomości</li>
+					}
+				</ul>
+
+				<ul className={currentListOption === 'handover' ? 'handoverPostList' : 'handoverPostListDeactive'}>
+					{ handoverPosts.length !== 0 ? 
+						handoverPosts.map( (post, i) => 
+							<Post 
+								key={post.uuIdDay} 
+								id={post.uuIdDay} 
+								index={i} 
+								details={handoverPosts[i]} 
+								{...this.props}
+							/>
+						) : 
+						<li>brak wiadomości</li>
+					}
+				</ul>
+
+				<ul className={currentListOption === 'lookbook' ? 'lookbookPostList' : 'lookbookPostListDeactive'}>
+					{ lookbookPosts.length !== 0 ? 
+						lookbookPosts.map( (post, i) => 
+							<Post 
+								key={post.uuIdDay} 
+								id={post.uuIdDay} 
+								index={i} 
+								details={lookbookPosts[i]} 
+								{...this.props}
+							/>
+						) : 
+						<li>brak wiadomości</li>
+					}
 				</ul>
 
 			</div>

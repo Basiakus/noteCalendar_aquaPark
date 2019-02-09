@@ -28,6 +28,32 @@
 		}
 	}
 }
+%postList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 4.5;
+	overflow: scroll;
+	flex-direction: column;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	li {
+		display: flex;
+		min-height: 30%;
+		width: 100%;
+		span.number {
+			flex: 1;
+		}
+		span.text {
+			flex: 8;
+		}
+		span.delete {
+			flex: 1;
+			cursor: pointer;
+		}
+	}
+}
 //end of extended properties 
 
 body {
@@ -164,36 +190,46 @@ body {
 					background-color: #ccebff;
 				}
 				.controls {
-					
-				}
-			}
-			ul.postList {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex: 4.5;
-				overflow: scroll;
-				flex-direction: column;
-				text-align: center;
-				padding: 0;
-				margin: 0;
-				li {
 					display: flex;
-					min-height: 30%;
-					width: 100%;
-					span.number{
+					input, label {
 						flex: 1;
+						text-align: center;
 					}
-					span.text{
-						flex: 8;
+					#handover {
+						background-color: orange;
 					}
-					span.delete{
-						flex: 1
+					#lookbook {
+						background-color: green;
 					}
 				}
-				
 			}
-
+			span.listSelect {
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+			} 
+			ul.allPostList {
+				@extend %postList;
+			}
+			ul.handoverPostList {
+				@extend %postList;
+				background-color: orange;
+				color: white;
+			}
+			ul.lookbookPostList {
+				@extend %postList;
+				background-color: green;
+				color: white;
+			}
+			ul.allPostListDeactive {
+				display: none;
+			}
+			ul.handoverPostListDeactive {
+				display: none;
+			}
+			ul.lookbookPostListDeactive {
+				display: none;
+			}
 		}
 	}
 }
