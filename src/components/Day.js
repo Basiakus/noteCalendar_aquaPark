@@ -13,6 +13,7 @@ class Day extends Component {
 	};
 	// need state for checkbox value
 	state = {
+		diaryChecked: this.props.diaryChecked,
 		handoverChecked: this.props.handoverChecked,
 		lookbookChecked: this.props.lookbookChecked,
 		postSelected: this.props.postSelected
@@ -43,11 +44,17 @@ class Day extends Component {
 	}
 
 	// handles for set curent value of checkboxes and option
+	handleChangeDiary = () => {
+		this.setState({handoverChecked: false});
+		this.setState({lookbookChecked: false});
+	}
 	handleChangeHandover = () => {
-		this.setState({handoverChecked: !this.state.handoverChecked});
+		this.setState({handoverChecked: true});
+		this.setState({lookbookChecked: false});
 	}
 	handleChangeLookbook = () => {
-		this.setState({lookbookChecked: !this.state.lookbookChecked});
+		this.setState({lookbookChecked: true});
+		this.setState({handoverChecked: false});
 	}
 	handleOptionChange = (event) => {
 		this.setState({postSelected: event.target.value});
@@ -85,8 +92,9 @@ class Day extends Component {
 				<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
 					<div className="controls">
-						<label id='handover' ><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeHandover} />handover</label>
-						<label id='lookbook' ><input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChangeLookbook} />lookbook</label>
+						<label id='all' ><input type="radio" defaultChecked={true} value='all' name='message' onChange={this.handleChangeDiary} />dziennik</label>
+						<label id='handover' ><input type="radio" value='handover' name='message' onChange={this.handleChangeHandover} />handover</label>
+						<label id='lookbook' ><input type="radio" value='lookbook' name='message' onChange={this.handleChangeLookbook} />lookbook</label>
 						<input type='submit' value='zapisz'/>
 					</div>
 				</form>
