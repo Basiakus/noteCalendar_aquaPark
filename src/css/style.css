@@ -22,7 +22,7 @@ body .navigation .content .dayMiniature, body .navigation .content .dayMiniature
       font-weight: bold;
       text-transform: capitalize; }
 
-body .navigation .day ul.allPostList, body .navigation .day ul.handoverPostList, body .navigation .day ul.lookbookPostList {
+body .navigation .day ul.allPostList, body .navigation .day ul.notesPostList, body .navigation .day ul.handoverPostList, body .navigation .day ul.lookbookPostList {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,17 +32,29 @@ body .navigation .day ul.allPostList, body .navigation .day ul.handoverPostList,
   text-align: center;
   padding: 0;
   margin: 0; }
-  body .navigation .day ul.allPostList li, body .navigation .day ul.handoverPostList li, body .navigation .day ul.lookbookPostList li {
+  body .navigation .day ul.allPostList li, body .navigation .day ul.notesPostList li, body .navigation .day ul.handoverPostList li, body .navigation .day ul.lookbookPostList li {
     display: flex;
     min-height: 30%;
     width: 100%; }
-    body .navigation .day ul.allPostList li span.number, body .navigation .day ul.handoverPostList li span.number, body .navigation .day ul.lookbookPostList li span.number {
+    body .navigation .day ul.allPostList li span.number, body .navigation .day ul.notesPostList li span.number, body .navigation .day ul.handoverPostList li span.number, body .navigation .day ul.lookbookPostList li span.number {
       flex: 1; }
-    body .navigation .day ul.allPostList li span.text, body .navigation .day ul.handoverPostList li span.text, body .navigation .day ul.lookbookPostList li span.text {
+    body .navigation .day ul.allPostList li span.text, body .navigation .day ul.notesPostList li span.text, body .navigation .day ul.handoverPostList li span.text, body .navigation .day ul.lookbookPostList li span.text {
       flex: 8; }
-    body .navigation .day ul.allPostList li span.delete, body .navigation .day ul.handoverPostList li span.delete, body .navigation .day ul.lookbookPostList li span.delete {
+    body .navigation .day ul.allPostList li span.delete, body .navigation .day ul.notesPostList li span.delete, body .navigation .day ul.handoverPostList li span.delete, body .navigation .day ul.lookbookPostList li span.delete {
       flex: 1;
       cursor: pointer; }
+  body .navigation .day ul.allPostList li.notesPost, body .navigation .day ul.notesPostList li.notesPost, body .navigation .day ul.handoverPostList li.notesPost, body .navigation .day ul.lookbookPostList li.notesPost {
+    background-color: lightblue;
+    color: black; }
+  body .navigation .day ul.allPostList li.lookbookPost, body .navigation .day ul.notesPostList li.lookbookPost, body .navigation .day ul.handoverPostList li.lookbookPost, body .navigation .day ul.lookbookPostList li.lookbookPost {
+    background-color: green;
+    color: white; }
+  body .navigation .day ul.allPostList li.handoverPost, body .navigation .day ul.notesPostList li.handoverPost, body .navigation .day ul.handoverPostList li.handoverPost, body .navigation .day ul.lookbookPostList li.handoverPost {
+    background-color: orange;
+    color: white; }
+  body .navigation .day ul.allPostList li.handoverAndlookbookPost, body .navigation .day ul.notesPostList li.handoverAndlookbookPost, body .navigation .day ul.handoverPostList li.handoverAndlookbookPost, body .navigation .day ul.lookbookPostList li.handoverAndlookbookPost {
+    background-color: blue;
+    color: white; }
 
 body {
   margin: 0;
@@ -99,9 +111,11 @@ body {
         body .navigation .content .dayMiniatureSunday a span {
           color: white; }
         body .navigation .content .dayMiniatureSunday + .breaker {
-          display: block;
-          width: 100%;
+          display: flex;
+          flex-basis: 100%;
           height: 0%; }
+      body .navigation .content .dayMiniatureSelfLeft {
+        align-self: baseline; }
     body .navigation .day {
       display: flex;
       flex: 9;
@@ -153,6 +167,8 @@ body {
           body .navigation .day form .controls input, body .navigation .day form .controls label {
             flex: 1;
             text-align: center; }
+          body .navigation .day form .controls #notes {
+            background-color: lightblue; }
           body .navigation .day form .controls #handover {
             background-color: orange; }
           body .navigation .day form .controls #lookbook {
@@ -161,13 +177,15 @@ body {
         display: flex;
         justify-content: space-between;
         flex-direction: row; }
+      body .navigation .day ul.notesPostList {
+        background-color: lightblue; }
       body .navigation .day ul.handoverPostList {
-        background-color: orange;
-        color: white; }
+        background-color: orange; }
       body .navigation .day ul.lookbookPostList {
-        background-color: green;
-        color: white; }
+        background-color: green; }
       body .navigation .day ul.allPostListDeactive {
+        display: none; }
+      body .navigation .day ul.notesPostListDeactive {
         display: none; }
       body .navigation .day ul.handoverPostListDeactive {
         display: none; }

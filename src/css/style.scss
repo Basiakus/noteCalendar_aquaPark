@@ -51,6 +51,22 @@
 			cursor: pointer;
 		}
 	}
+	li.notesPost {
+		background-color: lightblue;
+		color: black;
+	}
+	li.lookbookPost {
+		background-color: green;
+		color: white;
+	}
+	li.handoverPost {
+		background-color: orange;
+		color: white;
+	}
+	li.handoverAndlookbookPost {
+		background-color: blue;
+		color: white;
+	}
 }
 //end of extended properties 
 
@@ -131,10 +147,13 @@ body {
 					}
 				}
 				&+.breaker {
-					display: block;
-					width:100%;
+					display: flex;
+					flex-basis: 100%;
 					height:0%;
 				}
+			}
+			.dayMiniatureSelfLeft {
+				align-self: baseline;
 			}
 		}
 		.day {
@@ -199,6 +218,9 @@ body {
 						flex: 1;
 						text-align: center;
 					}
+					#notes {
+						background-color: lightblue;
+					}
 					#handover {
 						background-color: orange;
 					}
@@ -215,17 +237,22 @@ body {
 			ul.allPostList {
 				@extend %postList;
 			}
+			ul.notesPostList {
+				@extend %postList;
+				background-color: lightblue;
+			}
 			ul.handoverPostList {
 				@extend %postList;
 				background-color: orange;
-				color: white;
 			}
 			ul.lookbookPostList {
 				@extend %postList;
 				background-color: green;
-				color: white;
 			}
 			ul.allPostListDeactive {
+				display: none;
+			}
+			ul.notesPostListDeactive {
 				display: none;
 			}
 			ul.handoverPostListDeactive {

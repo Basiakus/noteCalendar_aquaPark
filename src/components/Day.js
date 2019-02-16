@@ -7,13 +7,14 @@ class Day extends Component {
 
 	//defaultChecked for checkboxes
 	static defaultProps = {
+		checkboxNotesActive: true,
 		handoverChecked: false,
 		lookbookChecked: false,
 		postSelected: 'all'
 	};
 	// need state for checkbox value
 	state = {
-		diaryChecked: this.props.diaryChecked,
+		checkboxNotesActive: this.props.checkboxNotesActive,
 		handoverChecked: this.props.handoverChecked,
 		lookbookChecked: this.props.lookbookChecked,
 		postSelected: this.props.postSelected
@@ -43,18 +44,23 @@ class Day extends Component {
 		}
 	}
 
-	// handles for set curent value of checkboxes and option
-	handleChangeDiary = () => {
+	// handles for set curent value of checkboxes and option 
+	
+	/*
+	the customer wants to be able to add handover post include to lookbook list and backwards lookbook posts in handover list 
+	*/
+	handleChangeNotes = () => {
 		this.setState({handoverChecked: false});
 		this.setState({lookbookChecked: false});
+		this.setState({checkboxNotesActive: !this.state.checkboxNotesActive});
 	}
 	handleChangeHandover = () => {
-		this.setState({handoverChecked: true});
-		this.setState({lookbookChecked: false});
+		this.setState({handoverChecked: !this.state.handoverChecked});
+		//this.setState({lookbookChecked: !this.state.lookbookChecked});
 	}
 	handleChangeLookbook = () => {
-		this.setState({lookbookChecked: true});
-		this.setState({handoverChecked: false});
+		this.setState({lookbookChecked: !this.state.lookbookChecked});
+		//this.setState({handoverChecked: !this.state.handoverChecked});
 	}
 	handleOptionChange = (event) => {
 		this.setState({postSelected: event.target.value});
@@ -65,8 +71,9 @@ class Day extends Component {
 		let currentListOption = this.state.postSelected;
 		// all avaible posts 
 		const allDayPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId);
-		const handoverPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.handover === true && post.lookbook === false);
-		const lookbookPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.lookbook === true && post.handover === false);
+		const notesPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.handover === false && post.lookbook === false);
+		const handoverPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.handover === true);
+		const lookbookPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.lookbook === true);
 		/* refactory dayId string to pieces which represent current
 		 day needed to display day's name witout using data from state 
 		 (*wrong display after using navigation arrows)*/   
@@ -92,9 +99,9 @@ class Day extends Component {
 				<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
 					<div className="controls">
-						<label id='all' ><input type="radio" defaultChecked={true} value='all' name='message' onChange={this.handleChangeDiary} />dziennik</label>
-						<label id='handover' ><input type="radio" value='handover' name='message' onChange={this.handleChangeHandover} />handover</label>
-						<label id='lookbook' ><input type="radio" value='lookbook' name='message' onChange={this.handleChangeLookbook} />lookbook</label>
+						<label id='notes' ><input type="checkbox" defaultChecked={true} value='notes' onChange={this.handleChangeNotes} />notes</label>
+						<label id='handover' ><input type="checkbox" value='handover' onChange={this.handleChangeHandover} checked={this.state.handoverChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />handover</label>
+						<label id='lookbook' ><input type="checkbox" value='lookbook' onChange={this.handleChangeLookbook} checked={this.state.lookbookChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />lookbook</label>
 						<input type='submit' value='zapisz'/>
 					</div>
 				</form>
@@ -102,7 +109,8 @@ class Day extends Component {
 				<span className="listSelect">
 					<p>wiadomości zapisane:</p>
 					<select value={this.state.postSelected} onChange={this.handleOptionChange}>
-						<option value="all">all</option>
+						<option value="all">wszystko</option>
+						<option value="notes">notes</option>
 						<option value="handover">handover</option>
 						<option value="lookbook">lookbook</option>
 					</select>
@@ -116,6 +124,21 @@ class Day extends Component {
 								id={post.uuIdDay} 
 								index={i} 
 								details={allDayPosts[i]} 
+								{...this.props}
+							/>
+						) : 
+						<li>brak wiadomości</li>
+					}
+				</ul>
+
+				<ul className={currentListOption === 'notes' ? 'notesPostList' : 'notesPostListDeactive'}>
+					{ notesPosts.length !== 0 ? 
+						notesPosts.map( (post, i) => 
+							<Post 
+								key={post.uuIdDay} 
+								id={post.uuIdDay} 
+								index={i} 
+								details={notesPosts[i]} 
 								{...this.props}
 							/>
 						) : 

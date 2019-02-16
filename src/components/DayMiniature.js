@@ -31,6 +31,8 @@ class DayMiniature extends Component {
 						${ isSaturday ? 'dayMiniatureSaturday' : 'dayMiniature'}
 
 						${ isSunday ? 'dayMiniatureSunday' : 'dayMiniature'}
+
+						${ parseInt(this.props.index) > 23 ? 'dayMiniatureSelfLeft' : 'dayMiniature'}
 					`
 
 
