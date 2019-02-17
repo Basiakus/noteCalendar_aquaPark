@@ -30,8 +30,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex: 4.5;
-	overflow: scroll;
+	flex: 4;
+	overflow-y: auto;
 	flex-direction: column;
 	text-align: center;
 	padding: 0;
@@ -113,7 +113,7 @@ body {
 			display: flex;
 			flex-wrap: wrap;
 			flex: 9;
-			justify-content: flex-end;
+			//justify-content: flex-end;
 			align-items: center;
 			.breaker {
 				display: none;
@@ -152,8 +152,13 @@ body {
 					height:0%;
 				}
 			}
-			.dayMiniatureSelfLeft {
-				align-self: baseline;
+			.dayToLeft {
+				@extend %dayMiniature;
+				margin-right: auto;
+			}
+			.dayToRight {
+				@extend %dayMiniature;
+				margin-left: auto;
 			}
 		}
 		.day {
@@ -162,7 +167,7 @@ body {
 			flex-direction: column;
 			.miniCalendar {
 				display: flex;
-				flex: 1.5;
+				flex: 1;
 				flex-wrap: wrap;
 				justify-content: center;
 				align-items: center;
@@ -193,7 +198,7 @@ body {
 					box-shadow: 0px 0px 15px 3px #00ff00;
 				}				 
 			}
-			span {
+			span.currentDay {
 				display: flex;
 				flex: 1;
 				flex-direction: column;
@@ -230,6 +235,7 @@ body {
 				}
 			}
 			span.listSelect {
+				flex: 1;
 				display: flex;
 				justify-content: space-between;
 				flex-direction: row;

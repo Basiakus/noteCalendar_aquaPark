@@ -41,6 +41,7 @@ class Day extends Component {
 			this.refs.formSubmitRef.reset();
 			this.setState({handoverChecked: false});
 			this.setState({lookbookChecked: false});
+			this.setState({checkboxNotesActive: true});
 		}
 	}
 
@@ -87,7 +88,7 @@ class Day extends Component {
 				
 				<MiniCalendar {...this.props}/>
 
-				<span>
+				<span className='currentDay'>
 					<h2>{dayFromDayId + 1}</h2>
 					<h3>
 						{this.props.setDayName(

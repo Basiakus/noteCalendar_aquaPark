@@ -28,11 +28,13 @@ class DayMiniature extends Component {
 							&& currentYear === this.props.state.year ? 
 							'dayMiniatureIsToday' :	 'dayMiniature'	}
 
-						${ isSaturday ? 'dayMiniatureSaturday' : 'dayMiniature'}
+						${ isSaturday ? 'dayMiniatureSaturday' : ''}
 
-						${ isSunday ? 'dayMiniatureSunday' : 'dayMiniature'}
+						${ isSunday ? 'dayMiniatureSunday' : ''}
 
-						${ parseInt(this.props.index) > 23 ? 'dayMiniatureSelfLeft' : 'dayMiniature'}
+						${ parseInt(this.props.index) === this.props.state.date - 1 ? 'dayTofLeft' : ''}
+
+						${ parseInt(this.props.index) === 0 ? 'dayToRight' : ''}
 					`
 
 
