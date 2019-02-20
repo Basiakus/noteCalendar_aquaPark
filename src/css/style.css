@@ -22,6 +22,26 @@ body .navigation .content .dayMiniature, body .navigation .content .dayMiniature
       font-weight: bold;
       text-transform: capitalize; }
 
+body .navigation .day .postForm, body .navigation .day ul li .editPosterActive {
+  display: flex;
+  flex: 3;
+  flex-direction: column; }
+  body .navigation .day .postForm textarea, body .navigation .day ul li .editPosterActive textarea {
+    flex: 5;
+    text-align: center;
+    background-color: #ccebff; }
+  body .navigation .day .postForm .controls, body .navigation .day ul li .editPosterActive .controls {
+    display: flex; }
+    body .navigation .day .postForm .controls input, body .navigation .day ul li .editPosterActive .controls input, body .navigation .day .postForm .controls label, body .navigation .day ul li .editPosterActive .controls label {
+      flex: 1;
+      text-align: center; }
+    body .navigation .day .postForm .controls #notes, body .navigation .day ul li .editPosterActive .controls #notes {
+      background-color: lightblue; }
+    body .navigation .day .postForm .controls #handover, body .navigation .day ul li .editPosterActive .controls #handover {
+      background-color: orange; }
+    body .navigation .day .postForm .controls #lookbook, body .navigation .day ul li .editPosterActive .controls #lookbook {
+      background-color: green; }
+
 body .navigation .day ul.allPostList, body .navigation .day ul.notesPostList, body .navigation .day ul.handoverPostList, body .navigation .day ul.lookbookPostList {
   display: flex;
   justify-content: center;
@@ -60,6 +80,7 @@ body {
   margin: 0;
   padding: 0; }
   body .navigation {
+    position: relative;
     display: flex;
     width: 100%;
     height: 100vh;
@@ -155,25 +176,6 @@ body {
         align-items: center; }
         body .navigation .day span.currentDay h2, body .navigation .day span.currentDay h3 {
           text-align: center; }
-      body .navigation .day form {
-        display: flex;
-        flex: 3;
-        flex-direction: column; }
-        body .navigation .day form textarea {
-          flex: 5;
-          text-align: center;
-          background-color: #ccebff; }
-        body .navigation .day form .controls {
-          display: flex; }
-          body .navigation .day form .controls input, body .navigation .day form .controls label {
-            flex: 1;
-            text-align: center; }
-          body .navigation .day form .controls #notes {
-            background-color: lightblue; }
-          body .navigation .day form .controls #handover {
-            background-color: orange; }
-          body .navigation .day form .controls #lookbook {
-            background-color: green; }
       body .navigation .day span.listSelect {
         flex: 1;
         display: flex;
@@ -193,3 +195,24 @@ body {
         display: none; }
       body .navigation .day ul.lookbookPostListDeactive {
         display: none; }
+      body .navigation .day ul li span.editer {
+        cursor: pointer; }
+      body .navigation .day ul li .editPosterDeactive {
+        display: none; }
+      body .navigation .day ul li .editPosterActive {
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0; }
+        body .navigation .day ul li .editPosterActive form {
+          width: 90%;
+          height: 40%; }
+          body .navigation .day ul li .editPosterActive form textarea {
+            width: 40%;
+            height: 50%; }

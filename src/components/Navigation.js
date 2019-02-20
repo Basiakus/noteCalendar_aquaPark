@@ -126,6 +126,15 @@ class Navigation extends Component {
 		this.setState({ posts: [...this.state.posts, post]});
 	}
 
+	updatePost = (postIndex, newText, newHandover, newLookbook) => {
+		const posts = [...this.state.posts];
+		posts[postIndex].text = newText;
+		posts[postIndex].handover = newHandover;
+		posts[postIndex].lookbook = newLookbook;
+
+		this.setState({posts});
+	}
+
 	deletePost = (uuId) => {
 		const posts = [...this.state.posts];
 		const newPosts = posts.filter( post => post.uuIdDay !== uuId );
@@ -148,6 +157,7 @@ class Navigation extends Component {
 					{
 						state: this.state, 
 						addPost: this.addPost,
+						updatePost: this.updatePost,
 						deletePost: this.deletePost,
 						setDayName: this.setDayName
 					}

@@ -97,7 +97,7 @@ class Day extends Component {
 					</h3>
 				</span>
 
-				<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
+				<form className='postForm' ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
 					<div className="controls">
 						<label id='notes' ><input type="checkbox" defaultChecked={true} value='notes' onChange={this.handleChangeNotes} />notes</label>
