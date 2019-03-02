@@ -147,11 +147,11 @@ class Navigation extends Component {
 		return (
 			<div className='navigation'>
 				<ul>
-					<li onClick={this.prevMonth}>&#x2190;</li>
+					<li onClick={this.prevMonth}>&#60;</li>
 					
 					<li><Link to='/'><span>{ getMonth(this.state.month) }</span> <span>{ this.state.year }</span></Link></li>
 					
-					<li onClick={this.nextMonth}>&#x2192;</li>
+					<li onClick={this.nextMonth}>&#62;</li>
 				</ul>
 				{React.cloneElement(this.props.children, 
 					{

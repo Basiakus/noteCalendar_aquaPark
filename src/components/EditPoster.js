@@ -20,6 +20,7 @@ class EditPoster extends Component {
 			}
 		);
 	}
+
 	handleLookbook = () => {
 		this.setState({lookbook: !this.state.lookbook})
 	}
@@ -47,6 +48,11 @@ class EditPoster extends Component {
 			return;
 		} else {
 			this.props.updatePost(currentPost, newText, this.state.handover, this.state.lookbook);
+			this.setState({
+				notes: !this.props.details.lookbook && !this.props.details.handover ? true : false,
+				lookbook: this.props.details.lookbook,
+				handover: this.props.details.handover
+			})
 			this.props.handleCancelButton();
 		}
 	}
@@ -55,11 +61,11 @@ class EditPoster extends Component {
 		return (
 			<div className={this.props.isEdit ? 'editPosterActive' : 'editPosterDeactive'}>
 				<form ref={this.formSubmitRef} onSubmit={this.handleSubmit}>
-					<textarea ref={this.newTextRef} defaultValue={`${this.props.details.text}  \n\n edytowany`}></textarea>
+					<textarea ref={this.newTextRef} defaultValue={`${this.props.details.text}  \n\n (edytowany)`}></textarea>
 					<div className="controls">
-						<label id='notes' ><input type="checkbox" onChange={this.handleNotes} defaultChecked={this.state.notes} value='notes' />notes</label>
-						<label id='handover' ><input type="checkbox" onChange={this.handleHandover}checked={this.state.handover} value='handover' disabled={(this.state.notes)? "disabled" : ""}/>handover</label>
-						<label id='lookbook' ><input type="checkbox" onChange={this.handleLookbook}checked={this.state.lookbook} value='lookbook' disabled={(this.state.notes)? "disabled" : ""}/>lookbook</label>
+						<label id='notes' ><input type="checkbox" onChange={this.handleNotes} checked={this.state.notes} value='notes' />notes</label>
+						<label id='handover' ><input type="checkbox" onChange={this.handleHandover} checked={this.state.handover} value='handover' disabled={(this.state.notes)? "disabled" : ""}/>handover</label>
+						<label id='lookbook' ><input type="checkbox" onChange={this.handleLookbook} checked={this.state.lookbook} value='lookbook' disabled={(this.state.notes)? "disabled" : ""}/>lookbook</label>
 						<input type='submit' value='zapisz'/>
 					</div>
 					<button onClick={this.handleCancel}>Anuluj</button>
