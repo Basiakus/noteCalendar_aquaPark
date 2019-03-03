@@ -33,7 +33,8 @@ body .navigation .content .dayMiniature, body .navigation .content .dayMiniature
     body .navigation .content .dayMiniature a span#numberOfDay, body .navigation .content .dayMiniatureWithMessage a span#numberOfDay, body .navigation .content .dayMiniatureIsToday a span#numberOfDay, body .navigation .content .dayMiniatureSaturday a span#numberOfDay, body .navigation .content .dayMiniatureSunday a span#numberOfDay, body .navigation .content .dayToLeft a span#numberOfDay, body .navigation .content .dayToRight a span#numberOfDay {
       font-size: 2em; }
     body .navigation .content .dayMiniature a span#nameOfday, body .navigation .content .dayMiniatureWithMessage a span#nameOfday, body .navigation .content .dayMiniatureIsToday a span#nameOfday, body .navigation .content .dayMiniatureSaturday a span#nameOfday, body .navigation .content .dayMiniatureSunday a span#nameOfday, body .navigation .content .dayToLeft a span#nameOfday, body .navigation .content .dayToRight a span#nameOfday {
-      font-size: .9em; }
+      font-size: .9em;
+      font-weight: bold; }
     body .navigation .content .dayMiniature a span#envelope, body .navigation .content .dayMiniatureWithMessage a span#envelope, body .navigation .content .dayMiniatureIsToday a span#envelope, body .navigation .content .dayMiniatureSaturday a span#envelope, body .navigation .content .dayMiniatureSunday a span#envelope, body .navigation .content .dayToLeft a span#envelope, body .navigation .content .dayToRight a span#envelope {
       display: none; }
 
@@ -144,12 +145,17 @@ body {
       body .navigation .content .breaker {
         display: none; }
       body .navigation .content .dayMiniatureWithMessage a span#envelope {
-        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 1.2em;
         color: #00cc00;
         text-shadow: 0px 0px 5px #00b300;
         position: absolute;
         animation: pulse 3s infinite; }
+        body .navigation .content .dayMiniatureWithMessage a span#envelope:after {
+          content: '!';
+          font-size: 1.3em; }
 
 @keyframes pulse {
   0% {
@@ -159,8 +165,7 @@ body {
   100% {
     transform: scale(1) translateX(70%) translateY(30%); } }
       body .navigation .content .dayMiniatureIsToday a {
-        box-shadow: 7px 7px 7px #016589;
-        transform: scale(1.1); }
+        border: 4px solid; }
       body .navigation .content .dayMiniatureSaturday a {
         color: #e68a00; }
       body .navigation .content .dayMiniatureSunday a {
@@ -175,42 +180,62 @@ body {
         margin-left: auto; }
     body .navigation .day {
       display: flex;
-      flex: 9;
+      width: 100%;
+      height: 80%;
       flex-direction: column; }
       body .navigation .day .miniCalendar {
         display: flex;
-        flex: 1;
+        width: 100%;
+        height: 10%;
         flex-wrap: wrap;
-        justify-content: center;
-        align-items: center; }
+        justify-content: space-between;
+        padding: 0 3%; }
         body .navigation .day .miniCalendar > div {
+          position: relative;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          justify-content: space-around;
           align-items: center;
-          width: 2vw;
-          height: 2vw;
-          margin: 5px;
-          padding: 1%;
-          border-radius: 50%; }
+          width: 2vw; }
           body .navigation .day .miniCalendar > div a {
             text-decoration: none;
-            color: black; }
-        body .navigation .day .miniCalendar > div.isSaturday {
-          background-color: yellow; }
-        body .navigation .day .miniCalendar > div.isSunday {
-          background-color: red; }
-          body .navigation .day .miniCalendar > div.isSunday a {
-            color: white; }
-        body .navigation .day .miniCalendar > div.isMessage {
-          box-shadow: 0px 0px 15px 3px #00ff00; }
-      body .navigation .day span.currentDay {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; }
-        body .navigation .day span.currentDay h2, body .navigation .day span.currentDay h3 {
-          text-align: center; }
+            color: var(--main-color);
+            font-size: .8em;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            width: 100%;
+            height: 2vw;
+            background-color: white;
+            transition: .2s; }
+            body .navigation .day .miniCalendar > div a:hover {
+              box-shadow: 5px 5px 5px #016589;
+              transform: scale(1.2); }
+          body .navigation .day .miniCalendar > div > span.isMessageMini {
+            display: none; }
+          body .navigation .day .miniCalendar > div > span.dayNameMini {
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-size: .6em;
+            font-weight: bold; }
+        body .navigation .day .miniCalendar > div.isSaturday a, body .navigation .day .miniCalendar > div.isSaturday span.dayNameMini {
+          color: #e68a00; }
+        body .navigation .day .miniCalendar > div.isSunday a, body .navigation .day .miniCalendar > div.isSunday span.dayNameMini {
+          color: #e60000; }
+        body .navigation .day .miniCalendar > div.isToday a {
+          border: 1px solid #005ce8; }
+        body .navigation .day .miniCalendar > div.isMessage span#isMessageMini {
+          display: inline-block;
+          position: absolute;
+          color: #00cc00;
+          text-shadow: 0px 0px 3px #00b300;
+          transform: translateY(10%);
+          font-size: .8em;
+          font-weight: bolder;
+          user-select: none; }
       body .navigation .day span.listSelect {
         flex: 1;
         display: flex;

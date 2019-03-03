@@ -88,15 +88,6 @@ class Day extends Component {
 				
 				<MiniCalendar {...this.props}/>
 
-				<span className='currentDay'>
-					<h2>{dayFromDayId + 1}</h2>
-					<h3>
-						{this.props.setDayName(
-							`${monthFromDayId}/${dayFromDayId + 1}/${yearFromDayId}`
-						)}
-					</h3>
-				</span>
-
 				<form className='postForm' ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
 					<div className="controls">

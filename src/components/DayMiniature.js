@@ -43,7 +43,7 @@ class DayMiniature extends Component {
 				<Link to={`/day/${this.props.id}`}>
 					<span id="numberOfDay">{Number(this.props.index) + 1}</span>
 					<span id="nameOfday">{this.props.setDayName(`${this.props.state.month}/${parseInt(this.props.index) + 1}/${this.props.state.year}`)}</span>
-					<span id="envelope">&#9993;!</span>
+					<span id="envelope">&#9993;</span>
 				</Link>
 			</div>
 		);

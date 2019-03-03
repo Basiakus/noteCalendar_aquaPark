@@ -42,6 +42,7 @@
 		}
 		span#nameOfday {
 			font-size: .9em;
+			font-weight: bold;
 		}
 		span#envelope {
 			display: none;
@@ -193,12 +194,18 @@ body {
 				@extend %dayMiniature;
 				a {
 					span#envelope {
-						display: inline-block;
+						display: flex;
+						justify-content: center;
+						align-items: center;
 						font-size: 1.2em;
 						color: rgb(0, 204, 0);
 						text-shadow: 0px 0px 5px #00b300;
 						position: absolute;
 						animation: pulse 3s infinite;
+						&:after {
+							content: '!';
+							font-size: 1.3em;
+						}
 					}
 					@keyframes pulse {
 						0% {transform:scale(1) translateX(70%) translateY(30%);}
@@ -210,8 +217,7 @@ body {
 			.dayMiniatureIsToday {
 				@extend %dayMiniature;
 				a {
-					box-shadow: 7px 7px 7px rgb(1, 101, 137);
-					transform:scale(1.1);
+					border: 4px solid ;
 				}
 			}
 			.dayMiniatureSaturday {
@@ -242,50 +248,79 @@ body {
 		}
 		.day {
 			display: flex;
-			flex: 9;
+			width: 100%;
+			height: 80%;
 			flex-direction: column;
 			.miniCalendar {
 				display: flex;
-				flex: 1;
+				width: 100%;
+				height: 10%;
 				flex-wrap: wrap;
-				justify-content: center;
-				align-items: center;
+				justify-content: space-between;
+				padding: 0 3%;
 				>div {
+					position: relative;
 					display: flex;
-					justify-content: center;
+					flex-direction: column;
+					justify-content: space-around;
 					align-items: center;
 					width: 2vw;
-					height: 2vw;
-					margin: 5px;
-					padding: 1%;
-					border-radius: 50%;
 					a {
 						text-decoration: none;
-						color: black;
+						color: var(--main-color);
+						font-size: .8em;
+						font-weight: bold;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border-radius: 50%;
+						width: 100%;
+						height: 2vw;
+						background-color: white;
+						transition: .2s;
+						&:hover {
+							box-shadow: 5px 5px 5px rgb(1, 101, 137);
+							transform: scale(1.2);
+						}
+					}
+					>span.isMessageMini {
+						display: none;
+					}
+					>span.dayNameMini {
+						width: 100%;
+						color: white;
+						text-align: center;
+						font-size: .6em;
+						font-weight: bold;
 					}
 				}
 				>div.isSaturday {
-					background-color: yellow;
+					a, span.dayNameMini {
+						color: #e68a00;
+					}
 				}
 				>div.isSunday {
-					background-color: red;
+					a, span.dayNameMini {
+						color: #e60000;
+					}
+				}
+				>div.isToday {
 					a {
-						color: white;
+						border: 1px solid rgb(0, 92, 232);
 					}
 				}
 				>div.isMessage {
-					box-shadow: 0px 0px 15px 3px #00ff00;
+					span#isMessageMini {
+						display: inline-block;
+						position: absolute;
+						color: rgb(0, 204, 0);
+						text-shadow: 0px 0px 3px #00b300;
+						transform: translateY(10%);
+						font-size: .8em;
+						font-weight: bolder;
+						user-select: none;
+					}
 				}				 
-			}
-			span.currentDay {
-				display: flex;
-				flex: 1;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				h2, h3 {
-					text-align: center;
-				}
 			}
 			.postForm {
 				@extend %formStyle;
