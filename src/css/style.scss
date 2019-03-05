@@ -310,7 +310,7 @@ body {
 					}
 				}
 				>div.isMessage {
-					span#isMessageMini {
+					span.isMessageMini {
 						display: inline-block;
 						position: absolute;
 						color: rgb(0, 204, 0);
@@ -319,6 +319,12 @@ body {
 						font-size: .8em;
 						font-weight: bolder;
 						user-select: none;
+					}
+				}
+				>div.currentActive {
+					a {
+						box-shadow: 5px 5px 5px rgb(1, 101, 137);
+						transform: scale(1.2);
 					}
 				}				 
 			}

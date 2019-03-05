@@ -88,86 +88,94 @@ class Day extends Component {
 				
 				<MiniCalendar {...this.props}/>
 
-				<form className='postForm' ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
-					<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
-					<div className="controls">
-						<label id='notes' ><input type="checkbox" defaultChecked={true} value='notes' onChange={this.handleChangeNotes} />notes</label>
-						<label id='handover' ><input type="checkbox" value='handover' onChange={this.handleChangeHandover} checked={this.state.handoverChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />handover</label>
-						<label id='lookbook' ><input type="checkbox" value='lookbook' onChange={this.handleChangeLookbook} checked={this.state.lookbookChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />lookbook</label>
-						<input type='submit' value='zapisz'/>
+				<div className='postsPanel'>
+
+					<div className='formPanel'>	
+						<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
+							<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
+							<div className="controls">
+								<label id='notes' ><input type="checkbox" defaultChecked={true} value='notes' onChange={this.handleChangeNotes} />notes</label>
+								<label id='handover' ><input type="checkbox" value='handover' onChange={this.handleChangeHandover} checked={this.state.handoverChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />handover</label>
+								<label id='lookbook' ><input type="checkbox" value='lookbook' onChange={this.handleChangeLookbook} checked={this.state.lookbookChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />lookbook</label>
+								<input type='submit' value='zapisz'/>
+							</div>
+						</form>
 					</div>
-				</form>
 
-				<span className="listSelect">
-					<p>wiadomości zapisane:</p>
-					<select value={this.state.postSelected} onChange={this.handleOptionChange}>
-						<option value="all">wszystko</option>
-						<option value="notes">notes</option>
-						<option value="handover">handover</option>
-						<option value="lookbook">lookbook</option>
-					</select>
-				</span>
 
-				<ul className={currentListOption === 'all' ? 'allPostList' : 'allPostListDeactive'}>
-					{ allDayPosts.length !== 0 ? 
-						allDayPosts.map( (post, i) => 
-							<Post 
-								key={post.uuIdDay} 
-								id={post.uuIdDay} 
-								index={i} 
-								details={allDayPosts[i]} 
-								{...this.props}
-							/>
-						) : 
-						<li>brak wiadomości</li>
-					}
-				</ul>
+					<div className='allLists'>
+						<span className="listSelect">
+							<select value={this.state.postSelected} onChange={this.handleOptionChange}>
+								<option value="all">wszystko</option>
+								<option value="notes">notes</option>
+								<option value="handover">handover</option>
+								<option value="lookbook">lookbook</option>
+							</select>
+							<p>wiadomości zapisane:</p>
+						</span>
+						<ul className={currentListOption === 'all' ? 'allPostList' : 'allPostListDeactive'}>
+							{ allDayPosts.length !== 0 ? 
+								allDayPosts.map( (post, i) => 
+									<Post 
+										key={post.uuIdDay} 
+										id={post.uuIdDay} 
+										index={i} 
+										details={allDayPosts[i]} 
+										{...this.props}
+									/>
+								) : 
+								<li>brak wiadomości</li>
+							}
+						</ul>
 
-				<ul className={currentListOption === 'notes' ? 'notesPostList' : 'notesPostListDeactive'}>
-					{ notesPosts.length !== 0 ? 
-						notesPosts.map( (post, i) => 
-							<Post 
-								key={post.uuIdDay} 
-								id={post.uuIdDay} 
-								index={i} 
-								details={notesPosts[i]} 
-								{...this.props}
-							/>
-						) : 
-						<li>brak wiadomości</li>
-					}
-				</ul>
+						<ul className={currentListOption === 'notes' ? 'notesPostList' : 'notesPostListDeactive'}>
+							{ notesPosts.length !== 0 ? 
+								notesPosts.map( (post, i) => 
+									<Post 
+										key={post.uuIdDay} 
+										id={post.uuIdDay} 
+										index={i} 
+										details={notesPosts[i]} 
+										{...this.props}
+									/>
+								) : 
+								<li>brak wiadomości</li>
+							}
+						</ul>
 
-				<ul className={currentListOption === 'handover' ? 'handoverPostList' : 'handoverPostListDeactive'}>
-					{ handoverPosts.length !== 0 ? 
-						handoverPosts.map( (post, i) => 
-							<Post 
-								key={post.uuIdDay} 
-								id={post.uuIdDay} 
-								index={i} 
-								details={handoverPosts[i]} 
-								{...this.props}
-							/>
-						) : 
-						<li>brak wiadomości</li>
-					}
-				</ul>
+						<ul className={currentListOption === 'handover' ? 'handoverPostList' : 'handoverPostListDeactive'}>
+							{ handoverPosts.length !== 0 ? 
+								handoverPosts.map( (post, i) => 
+									<Post 
+										key={post.uuIdDay} 
+										id={post.uuIdDay} 
+										index={i} 
+										details={handoverPosts[i]} 
+										{...this.props}
+									/>
+								) : 
+								<li>brak wiadomości</li>
+							}
+						</ul>
 
-				<ul className={currentListOption === 'lookbook' ? 'lookbookPostList' : 'lookbookPostListDeactive'}>
-					{ lookbookPosts.length !== 0 ? 
-						lookbookPosts.map( (post, i) => 
-							<Post 
-								key={post.uuIdDay} 
-								id={post.uuIdDay} 
-								index={i} 
-								details={lookbookPosts[i]} 
-								{...this.props}
-							/>
-						) : 
-						<li>brak wiadomości</li>
-					}
-				</ul>
+						<ul className={currentListOption === 'lookbook' ? 'lookbookPostList' : 'lookbookPostListDeactive'}>
+							{ lookbookPosts.length !== 0 ? 
+								lookbookPosts.map( (post, i) => 
+									<Post 
+										key={post.uuIdDay} 
+										id={post.uuIdDay} 
+										index={i} 
+										details={lookbookPosts[i]} 
+										{...this.props}
+									/>
+								) : 
+								<li>brak wiadomości</li>
+							}
+						</ul>
+					</div>
 
+
+				</div>
 			</div>
 		);
 	}

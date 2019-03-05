@@ -227,7 +227,7 @@ body {
           color: #e60000; }
         body .navigation .day .miniCalendar > div.isToday a {
           border: 1px solid #005ce8; }
-        body .navigation .day .miniCalendar > div.isMessage span#isMessageMini {
+        body .navigation .day .miniCalendar > div.isMessage span.isMessageMini {
           display: inline-block;
           position: absolute;
           color: #00cc00;
@@ -236,6 +236,9 @@ body {
           font-size: .8em;
           font-weight: bolder;
           user-select: none; }
+        body .navigation .day .miniCalendar > div.currentActive a {
+          box-shadow: 5px 5px 5px #016589;
+          transform: scale(1.2); }
       body .navigation .day span.listSelect {
         flex: 1;
         display: flex;

@@ -12,7 +12,7 @@ class DayMiniCalendar extends Component {
 
 		const dayId = this.props.id;
 		const dayFromDayId = parseInt(dayId.slice(0, 2));
-		const monthFromDayId = dayId.slice(3, 4);
+		const monthFromDayId = dayId.slice(2, 4);
 		const yearFromDayId = dayId.slice(4);
 
 		const date = new Date();
@@ -25,6 +25,7 @@ class DayMiniCalendar extends Component {
 				<div 
 					className={`
 						${currentDayId === this.props.id ? 'isToday' : ''}
+						${this.props.id === this.props.params.dayId ? 'currentActive' : ''}
 						${isSaturday ? 'isSaturday' : ''}
 						${isSunday ? 'isSunday' : ''}
 						${isMessage !== -1 ? 'isMessage' : ''}
