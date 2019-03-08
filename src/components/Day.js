@@ -97,7 +97,7 @@ class Day extends Component {
 								<label id='notes' ><input type="checkbox" defaultChecked={true} value='notes' onChange={this.handleChangeNotes} />notes</label>
 								<label id='handover' ><input type="checkbox" value='handover' onChange={this.handleChangeHandover} checked={this.state.handoverChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />handover</label>
 								<label id='lookbook' ><input type="checkbox" value='lookbook' onChange={this.handleChangeLookbook} checked={this.state.lookbookChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />lookbook</label>
-								<input type='submit' value='zapisz'/>
+								<input id='sub' type='submit' value='zapisz'/>
 							</div>
 						</form>
 					</div>
@@ -105,12 +105,12 @@ class Day extends Component {
 
 					<div className='allLists'>
 						<span className="listSelect">
-							<select value={this.state.postSelected} onChange={this.handleOptionChange}>
-								<option value="all">wszystko</option>
-								<option value="notes">notes</option>
-								<option value="handover">handover</option>
-								<option value="lookbook">lookbook</option>
-							</select>
+							<label><input type="radio" defaultChecked={true} name='listViewer' value='all' onChange={this.handleOptionChange} />all</label>
+							<label><input type="radio" name='listViewer' value='notes' onChange={this.handleOptionChange} />notes</label>
+							<label><input type="radio" name='listViewer' value='handover' onChange={this.handleOptionChange} />handover</label>
+							<label><input type="radio" name='listViewer' value='lookbook' onChange={this.handleOptionChange} />lookbook</label>
+
+
 							<p>wiadomości zapisane:</p>
 						</span>
 						<ul className={currentListOption === 'all' ? 'allPostList' : 'allPostListDeactive'}>

@@ -3,6 +3,7 @@
   --main-color: rgb(0, 168, 234); }
 
 * {
+  border: 1px solid red;
   box-sizing: border-box;
   margin: 0;
   padding: 0; }
@@ -37,60 +38,6 @@ body .navigation .content .dayMiniature, body .navigation .content .dayMiniature
       font-weight: bold; }
     body .navigation .content .dayMiniature a span#envelope, body .navigation .content .dayMiniatureWithMessage a span#envelope, body .navigation .content .dayMiniatureIsToday a span#envelope, body .navigation .content .dayMiniatureSaturday a span#envelope, body .navigation .content .dayMiniatureSunday a span#envelope, body .navigation .content .dayToLeft a span#envelope, body .navigation .content .dayToRight a span#envelope {
       display: none; }
-
-body .navigation .day .postForm, body .navigation .day ul li .editPosterActive {
-  display: flex;
-  flex: 3;
-  flex-direction: column; }
-  body .navigation .day .postForm textarea, body .navigation .day ul li .editPosterActive textarea {
-    flex: 5;
-    text-align: center;
-    background-color: #ccebff; }
-  body .navigation .day .postForm .controls, body .navigation .day ul li .editPosterActive .controls {
-    display: flex; }
-    body .navigation .day .postForm .controls input, body .navigation .day ul li .editPosterActive .controls input, body .navigation .day .postForm .controls label, body .navigation .day ul li .editPosterActive .controls label {
-      flex: 1;
-      text-align: center; }
-    body .navigation .day .postForm .controls #notes, body .navigation .day ul li .editPosterActive .controls #notes {
-      background-color: lightblue; }
-    body .navigation .day .postForm .controls #handover, body .navigation .day ul li .editPosterActive .controls #handover {
-      background-color: orange; }
-    body .navigation .day .postForm .controls #lookbook, body .navigation .day ul li .editPosterActive .controls #lookbook {
-      background-color: green; }
-
-body .navigation .day ul.allPostList, body .navigation .day ul.notesPostList, body .navigation .day ul.handoverPostList, body .navigation .day ul.lookbookPostList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 4;
-  overflow-y: auto;
-  flex-direction: column;
-  text-align: center;
-  padding: 0;
-  margin: 0; }
-  body .navigation .day ul.allPostList li, body .navigation .day ul.notesPostList li, body .navigation .day ul.handoverPostList li, body .navigation .day ul.lookbookPostList li {
-    display: flex;
-    min-height: 30%;
-    width: 100%; }
-    body .navigation .day ul.allPostList li span.number, body .navigation .day ul.notesPostList li span.number, body .navigation .day ul.handoverPostList li span.number, body .navigation .day ul.lookbookPostList li span.number {
-      flex: 1; }
-    body .navigation .day ul.allPostList li span.text, body .navigation .day ul.notesPostList li span.text, body .navigation .day ul.handoverPostList li span.text, body .navigation .day ul.lookbookPostList li span.text {
-      flex: 8; }
-    body .navigation .day ul.allPostList li span.delete, body .navigation .day ul.notesPostList li span.delete, body .navigation .day ul.handoverPostList li span.delete, body .navigation .day ul.lookbookPostList li span.delete {
-      flex: 1;
-      cursor: pointer; }
-  body .navigation .day ul.allPostList li.notesPost, body .navigation .day ul.notesPostList li.notesPost, body .navigation .day ul.handoverPostList li.notesPost, body .navigation .day ul.lookbookPostList li.notesPost {
-    background-color: lightblue;
-    color: black; }
-  body .navigation .day ul.allPostList li.lookbookPost, body .navigation .day ul.notesPostList li.lookbookPost, body .navigation .day ul.handoverPostList li.lookbookPost, body .navigation .day ul.lookbookPostList li.lookbookPost {
-    background-color: green;
-    color: white; }
-  body .navigation .day ul.allPostList li.handoverPost, body .navigation .day ul.notesPostList li.handoverPost, body .navigation .day ul.handoverPostList li.handoverPost, body .navigation .day ul.lookbookPostList li.handoverPost {
-    background-color: orange;
-    color: white; }
-  body .navigation .day ul.allPostList li.handoverAndlookbookPost, body .navigation .day ul.notesPostList li.handoverAndlookbookPost, body .navigation .day ul.handoverPostList li.handoverAndlookbookPost, body .navigation .day ul.lookbookPostList li.handoverAndlookbookPost {
-    background-color: blue;
-    color: white; }
 
 body {
   margin: 0;
@@ -239,43 +186,103 @@ body {
         body .navigation .day .miniCalendar > div.currentActive a {
           box-shadow: 5px 5px 5px #016589;
           transform: scale(1.2); }
-      body .navigation .day span.listSelect {
-        flex: 1;
+      body .navigation .day .postsPanel {
         display: flex;
-        justify-content: space-between;
+        width: 100%;
+        height: 100%;
         flex-direction: row; }
-      body .navigation .day ul.notesPostList {
-        background-color: lightblue; }
-      body .navigation .day ul.handoverPostList {
-        background-color: orange; }
-      body .navigation .day ul.lookbookPostList {
-        background-color: green; }
-      body .navigation .day ul.allPostListDeactive {
-        display: none; }
-      body .navigation .day ul.notesPostListDeactive {
-        display: none; }
-      body .navigation .day ul.handoverPostListDeactive {
-        display: none; }
-      body .navigation .day ul.lookbookPostListDeactive {
-        display: none; }
-      body .navigation .day ul li span.editer {
-        cursor: pointer; }
-      body .navigation .day ul li .editPosterDeactive {
-        display: none; }
-      body .navigation .day ul li .editPosterActive {
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.8);
-        z-index: 1000;
-        display: flex;
-        width: 100vw;
-        height: 100vh;
-        top: 0;
-        left: 0; }
-        body .navigation .day ul li .editPosterActive form {
-          width: 90%;
-          height: 40%; }
-          body .navigation .day ul li .editPosterActive form textarea {
-            width: 40%;
-            height: 50%; }
+        body .navigation .day .postsPanel .formPanel {
+          display: flex;
+          flex: 1;
+          justify-content: center;
+          align-items: center; }
+          body .navigation .day .postsPanel .formPanel form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            height: 90%;
+            border-radius: 10px; }
+            body .navigation .day .postsPanel .formPanel form textarea {
+              width: 100%;
+              height: 90%;
+              border-radius: 10px 010px 0px 0px;
+              text-align: center;
+              padding: 10%; }
+            body .navigation .day .postsPanel .formPanel form .controls {
+              display: flex;
+              width: 100%;
+              border-radius: 0px 0px 10px 10px;
+              flex: 1; }
+              body .navigation .day .postsPanel .formPanel form .controls input, body .navigation .day .postsPanel .formPanel form .controls label {
+                flex: 1;
+                justify-content: center;
+                align-items: center;
+                display: flex; }
+                body .navigation .day .postsPanel .formPanel form .controls input input, body .navigation .day .postsPanel .formPanel form .controls label input {
+                  max-width: 10%; }
+              body .navigation .day .postsPanel .formPanel form .controls #sub {
+                border-radius: 0px 0px 10px 0px; }
+              body .navigation .day .postsPanel .formPanel form .controls #notes {
+                background-color: lightblue;
+                border-radius: 0px 0px 0px 10px; }
+              body .navigation .day .postsPanel .formPanel form .controls #handover {
+                background-color: orange; }
+              body .navigation .day .postsPanel .formPanel form .controls #lookbook {
+                background-color: green; }
+        body .navigation .day .postsPanel .allLists {
+          display: flex;
+          flex: 1;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column; }
+          body .navigation .day .postsPanel .allLists .listSelect {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 15%; }
+            body .navigation .day .postsPanel .allLists .listSelect label {
+              width: 25%; }
+            body .navigation .day .postsPanel .allLists .listSelect p {
+              width: 100%; }
+          body .navigation .day .postsPanel .allLists ul {
+            width: 90%;
+            height: 85%; }
+            body .navigation .day .postsPanel .allLists ul li {
+              width: 100%; }
+              body .navigation .day .postsPanel .allLists ul li span.editer {
+                cursor: pointer; }
+              body .navigation .day .postsPanel .allLists ul li .editPosterDeactive {
+                display: none; }
+              body .navigation .day .postsPanel .allLists ul li .editPosterActive {
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0; }
+                body .navigation .day .postsPanel .allLists ul li .editPosterActive form {
+                  width: 90%;
+                  height: 40%; }
+                  body .navigation .day .postsPanel .allLists ul li .editPosterActive form textarea {
+                    width: 40%;
+                    height: 50%; }
+          body .navigation .day .postsPanel .allLists ul.notesPostList {
+            background-color: lightblue; }
+          body .navigation .day .postsPanel .allLists ul.handoverPostList {
+            background-color: orange; }
+          body .navigation .day .postsPanel .allLists ul.lookbookPostList {
+            background-color: green; }
+          body .navigation .day .postsPanel .allLists ul.allPostListDeactive {
+            display: none; }
+          body .navigation .day .postsPanel .allLists ul.notesPostListDeactive {
+            display: none; }
+          body .navigation .day .postsPanel .allLists ul.handoverPostListDeactive {
+            display: none; }
+          body .navigation .day .postsPanel .allLists ul.lookbookPostListDeactive {
+            display: none; }
