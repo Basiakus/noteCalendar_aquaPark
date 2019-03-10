@@ -90,6 +90,7 @@ class Day extends Component {
 
 				<div className='postsPanel'>
 
+
 					<div className='formPanel'>	
 						<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 							<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
@@ -102,18 +103,16 @@ class Day extends Component {
 						</form>
 					</div>
 
-
 					<div className='allLists'>
 						<span className="listSelect">
 							<label><input type="radio" defaultChecked={true} name='listViewer' value='all' onChange={this.handleOptionChange} />all</label>
 							<label><input type="radio" name='listViewer' value='notes' onChange={this.handleOptionChange} />notes</label>
 							<label><input type="radio" name='listViewer' value='handover' onChange={this.handleOptionChange} />handover</label>
 							<label><input type="radio" name='listViewer' value='lookbook' onChange={this.handleOptionChange} />lookbook</label>
-
-
-							<p>wiadomości zapisane:</p>
 						</span>
+						
 						<ul className={currentListOption === 'all' ? 'allPostList' : 'allPostListDeactive'}>
+							<lh>wiadomości zapisane:</lh>
 							{ allDayPosts.length !== 0 ? 
 								allDayPosts.map( (post, i) => 
 									<Post 
@@ -129,6 +128,7 @@ class Day extends Component {
 						</ul>
 
 						<ul className={currentListOption === 'notes' ? 'notesPostList' : 'notesPostListDeactive'}>
+							<lh>wiadomości zapisane:</lh>
 							{ notesPosts.length !== 0 ? 
 								notesPosts.map( (post, i) => 
 									<Post 
@@ -144,6 +144,7 @@ class Day extends Component {
 						</ul>
 
 						<ul className={currentListOption === 'handover' ? 'handoverPostList' : 'handoverPostListDeactive'}>
+							<lh>wiadomości zapisane:</lh>
 							{ handoverPosts.length !== 0 ? 
 								handoverPosts.map( (post, i) => 
 									<Post 
@@ -159,6 +160,7 @@ class Day extends Component {
 						</ul>
 
 						<ul className={currentListOption === 'lookbook' ? 'lookbookPostList' : 'lookbookPostListDeactive'}>
+							<lh>wiadomości zapisane:</lh>
 							{ lookbookPosts.length !== 0 ? 
 								lookbookPosts.map( (post, i) => 
 									<Post 

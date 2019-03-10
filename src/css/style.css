@@ -3,7 +3,6 @@
   --main-color: rgb(0, 168, 234); }
 
 * {
-  border: 1px solid red;
   box-sizing: border-box;
   margin: 0;
   padding: 0; }
@@ -193,7 +192,7 @@ body {
         flex-direction: row; }
         body .navigation .day .postsPanel .formPanel {
           display: flex;
-          flex: 1;
+          flex: .7;
           justify-content: center;
           align-items: center; }
           body .navigation .day .postsPanel .formPanel form {
@@ -209,17 +208,19 @@ body {
               height: 90%;
               border-radius: 10px 010px 0px 0px;
               text-align: center;
-              padding: 10%; }
+              padding: 10%;
+              resize: none; }
             body .navigation .day .postsPanel .formPanel form .controls {
               display: flex;
               width: 100%;
               border-radius: 0px 0px 10px 10px;
               flex: 1; }
               body .navigation .day .postsPanel .formPanel form .controls input, body .navigation .day .postsPanel .formPanel form .controls label {
+                display: flex;
                 flex: 1;
                 justify-content: center;
                 align-items: center;
-                display: flex; }
+                text-transform: capitalize; }
                 body .navigation .day .postsPanel .formPanel form .controls input input, body .navigation .day .postsPanel .formPanel form .controls label input {
                   max-width: 10%; }
               body .navigation .day .postsPanel .formPanel form .controls #sub {
@@ -233,25 +234,50 @@ body {
                 background-color: green; }
         body .navigation .day .postsPanel .allLists {
           display: flex;
-          flex: 1;
-          justify-content: flex-start;
+          flex: 1.3;
+          justify-content: center;
           align-items: center;
-          flex-direction: column; }
+          flex-direction: column;
+          background-color: white;
+          margin: 1.7%;
+          border-radius: 10px 10px 10px 10px; }
           body .navigation .day .postsPanel .allLists .listSelect {
             display: flex;
-            flex-wrap: wrap;
             width: 100%;
-            height: 15%; }
+            height: 10%; }
             body .navigation .day .postsPanel .allLists .listSelect label {
-              width: 25%; }
-            body .navigation .day .postsPanel .allLists .listSelect p {
-              width: 100%; }
+              display: flex;
+              flex: 1;
+              justify-content: center;
+              align-items: center;
+              text-transform: capitalize; }
+              body .navigation .day .postsPanel .allLists .listSelect label:nth-child(1) {
+                background-color: white;
+                color: var(--main-color);
+                border-radius: 10px 0px 0px 0px; }
+              body .navigation .day .postsPanel .allLists .listSelect label:nth-child(2) {
+                background-color: lightblue; }
+              body .navigation .day .postsPanel .allLists .listSelect label:nth-child(3) {
+                background-color: orange; }
+              body .navigation .day .postsPanel .allLists .listSelect label:nth-child(4) {
+                background-color: green;
+                border-radius: 0px 10px 0px 0px; }
           body .navigation .day .postsPanel .allLists ul {
-            width: 90%;
-            height: 85%; }
+            width: 100%;
+            height: 90%;
+            border-radius: 0px 0px 10px 10px;
+            list-style-type: none; }
+            body .navigation .day .postsPanel .allLists ul lh {
+              height: 10%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-transform: uppercase;
+              font-size: .8em; }
             body .navigation .day .postsPanel .allLists ul li {
-              width: 100%; }
-              body .navigation .day .postsPanel .allLists ul li span.editer {
+              width: 100%;
+              display: flex; }
+              body .navigation .day .postsPanel .allLists ul li span.editer, body .navigation .day .postsPanel .allLists ul li span.delete {
                 cursor: pointer; }
               body .navigation .day .postsPanel .allLists ul li .editPosterDeactive {
                 display: none; }
