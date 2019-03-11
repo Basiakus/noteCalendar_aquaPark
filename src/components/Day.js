@@ -112,7 +112,7 @@ class Day extends Component {
 						</span>
 						
 						<ul className={currentListOption === 'all' ? 'allPostList' : 'allPostListDeactive'}>
-							<lh>wiadomości zapisane:</lh>
+							<h3>wiadomości zapisane:</h3>
 							{ allDayPosts.length !== 0 ? 
 								allDayPosts.map( (post, i) => 
 									<Post 
@@ -128,7 +128,7 @@ class Day extends Component {
 						</ul>
 
 						<ul className={currentListOption === 'notes' ? 'notesPostList' : 'notesPostListDeactive'}>
-							<lh>wiadomości zapisane:</lh>
+							<h3>wiadomości zapisane:</h3>
 							{ notesPosts.length !== 0 ? 
 								notesPosts.map( (post, i) => 
 									<Post 
@@ -144,7 +144,7 @@ class Day extends Component {
 						</ul>
 
 						<ul className={currentListOption === 'handover' ? 'handoverPostList' : 'handoverPostListDeactive'}>
-							<lh>wiadomości zapisane:</lh>
+							<h3>wiadomości zapisane:</h3>
 							{ handoverPosts.length !== 0 ? 
 								handoverPosts.map( (post, i) => 
 									<Post 
@@ -160,7 +160,7 @@ class Day extends Component {
 						</ul>
 
 						<ul className={currentListOption === 'lookbook' ? 'lookbookPostList' : 'lookbookPostListDeactive'}>
-							<lh>wiadomości zapisane:</lh>
+							<h3>wiadomości zapisane:</h3>
 							{ lookbookPosts.length !== 0 ? 
 								lookbookPosts.map( (post, i) => 
 									<Post 
