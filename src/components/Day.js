@@ -32,12 +32,18 @@ class Day extends Component {
 		const uuIdDay = uuid();
 		const handover = this.state.handoverChecked;
 		const lookbook = this.state.lookbookChecked;
-		console.log(text, dayId, uuIdDay, handover, lookbook);
+		const date = new Date();
+		const currentDate = date.toLocaleDateString('pl-PL');
+		const hour = date.getHours();
+		const minutes = date.getMinutes();
+		const seconds = date.getSeconds();
+		const timeOfCreate = `${currentDate}, ${hour}:${minutes}:${seconds}`;
+		console.log(text, dayId, uuIdDay, handover, lookbook, timeOfCreate);
 		if(text === '') {
 			alert('wiadomość nie może być pusta');
 			return;
 		} else {
-			this.props.addPost(text, dayId, uuIdDay, handover, lookbook);
+			this.props.addPost(text, dayId, uuIdDay, handover, lookbook, timeOfCreate);
 			this.refs.formSubmitRef.reset();
 			this.setState({handoverChecked: false});
 			this.setState({lookbookChecked: false});

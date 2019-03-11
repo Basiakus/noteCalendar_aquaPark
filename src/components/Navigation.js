@@ -114,23 +114,26 @@ class Navigation extends Component {
 		return date.toLocaleDateString('pl-PL', { weekday: 'short' });    
 	}
 	
-	addPost = (text, dayId, uuIdDay, handover, lookbook) => {
+	addPost = (text, dayId, uuIdDay, handover, lookbook, createDate) => {
 		const post = {
 			text,
 			dayId,
 			uuIdDay,
 			handover,
-			lookbook
+			lookbook,
+			createDate,
+			editDate: ''
 		};
 		
 		this.setState({ posts: [...this.state.posts, post]});
 	}
 
-	updatePost = (postIndex, newText, newHandover, newLookbook) => {
+	updatePost = (postIndex, newText, newHandover, newLookbook, newEditDate) => {
 		const posts = [...this.state.posts];
 		posts[postIndex].text = newText;
 		posts[postIndex].handover = newHandover;
 		posts[postIndex].lookbook = newLookbook;
+		posts[postIndex].editDate = newEditDate
 
 		this.setState({posts});
 	}
