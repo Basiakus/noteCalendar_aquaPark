@@ -37,7 +37,7 @@ class Day extends Component {
 		const hour = date.getHours();
 		const minutes = date.getMinutes();
 		const seconds = date.getSeconds();
-		const timeOfCreate = `${currentDate}, ${hour}:${minutes}:${seconds}`;
+		const timeOfCreate = `${currentDate} | ${hour}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}`: seconds}`;
 		console.log(text, dayId, uuIdDay, handover, lookbook, timeOfCreate);
 		if(text === '') {
 			alert('wiadomość nie może być pusta');

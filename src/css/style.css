@@ -244,7 +244,8 @@ body {
           body .navigation .day .postsPanel .allLists .listSelect {
             display: flex;
             width: 100%;
-            height: 10%; }
+            height: 10%;
+            border-radius: 10px 10px 0px 0px; }
             body .navigation .day .postsPanel .allLists .listSelect label {
               display: flex;
               flex: 1;
@@ -266,8 +267,9 @@ body {
             width: 100%;
             height: 90%;
             border-radius: 0px 0px 10px 10px;
-            list-style-type: none; }
-            body .navigation .day .postsPanel .allLists ul lh {
+            list-style-type: none;
+            overflow-y: auto; }
+            body .navigation .day .postsPanel .allLists ul h3 {
               height: 10%;
               display: flex;
               justify-content: center;
@@ -275,10 +277,39 @@ body {
               text-transform: uppercase;
               font-size: .8em; }
             body .navigation .day .postsPanel .allLists ul li {
-              width: 100%;
-              display: flex; }
-              body .navigation .day .postsPanel .allLists ul li span.editer, body .navigation .day .postsPanel .allLists ul li span.delete {
-                cursor: pointer; }
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              margin: 1%;
+              border-radius: 8px;
+              border: 1px solid var(--main-color); }
+              body .navigation .day .postsPanel .allLists ul li span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 1%; }
+              body .navigation .day .postsPanel .allLists ul li span.number {
+                display: flex;
+                flex: .5; }
+              body .navigation .day .postsPanel .allLists ul li div.postContent {
+                flex: 20;
+                flex-direction: column; }
+                body .navigation .day .postsPanel .allLists ul li div.postContent div.postSubContent {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  font-size: .9em;
+                  font-style: oblique; }
+                body .navigation .day .postsPanel .allLists ul li div.postContent span.text {
+                  font-size: 1.2em; }
+                body .navigation .day .postsPanel .allLists ul li div.postContent div.settings {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between; }
+                  body .navigation .day .postsPanel .allLists ul li div.postContent div.settings span.editer, body .navigation .day .postsPanel .allLists ul li div.postContent div.settings span.delete {
+                    cursor: pointer;
+                    color: red;
+                    font-weight: bold; }
               body .navigation .day .postsPanel .allLists ul li .editPosterDeactive {
                 display: none; }
               body .navigation .day .postsPanel .allLists ul li .editPosterActive {
