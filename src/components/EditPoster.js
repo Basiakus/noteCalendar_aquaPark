@@ -48,7 +48,7 @@ class EditPoster extends Component {
 		const hour = date.getHours();
 		const minutes = date.getMinutes();
 		const seconds = date.getSeconds();
-		const timeOfUpdate = `${currentDate}, ${hour}:${minutes}:${seconds}`;
+		const timeOfUpdate = `${currentDate} | ${hour}:${minutes}:${seconds}`;
 		if(newText === '') {
 			alert('wiadomość nie może być pusta');
 			return;

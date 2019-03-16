@@ -5,19 +5,12 @@ import uuid from 'uuid/v4';
 
 class Day extends Component {
 
-	//defaultChecked for checkboxes
-	static defaultProps = {
-		checkboxNotesActive: true,
-		handoverChecked: false,
-		lookbookChecked: false,
-		postSelected: 'all'
-	};
 	// need state for checkbox value
 	state = {
-		checkboxNotesActive: this.props.checkboxNotesActive,
-		handoverChecked: this.props.handoverChecked,
-		lookbookChecked: this.props.lookbookChecked,
-		postSelected: this.props.postSelected
+		handoverChecked: false,
+		lookbookChecked: false,
+		checkboxNotesActive: true,
+		postSelected: 'all'
 	};
 
 	// References for text message to grab text and form to reset after submit
@@ -45,9 +38,11 @@ class Day extends Component {
 		} else {
 			this.props.addPost(text, dayId, uuIdDay, handover, lookbook, timeOfCreate);
 			this.refs.formSubmitRef.reset();
-			this.setState({handoverChecked: false});
-			this.setState({lookbookChecked: false});
-			this.setState({checkboxNotesActive: true});
+			this.setState({
+				handoverChecked: false,
+				lookbookChecked: false,
+				checkboxNotesActive: true
+			});
 		}
 	}
 
@@ -57,9 +52,11 @@ class Day extends Component {
 	the customer wants to be able to add handover post include to lookbook list and backwards lookbook posts in handover list 
 	*/
 	handleChangeNotes = () => {
-		this.setState({handoverChecked: false});
-		this.setState({lookbookChecked: false});
-		this.setState({checkboxNotesActive: !this.state.checkboxNotesActive});
+		this.setState({
+			checkboxNotesActive: !this.state.checkboxNotesActive,
+			handoverChecked: false,
+			lookbookChecked: false
+		});
 	}
 	handleChangeHandover = () => {
 		this.setState({handoverChecked: !this.state.handoverChecked});
@@ -81,14 +78,8 @@ class Day extends Component {
 		const notesPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.handover === false && post.lookbook === false);
 		const handoverPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.handover === true);
 		const lookbookPosts = this.props.state.posts.filter(post => post.dayId === this.props.params.dayId && post.lookbook === true);
-		/* refactory dayId string to pieces which represent current
-		 day needed to display day's name witout using data from state 
-		 (*wrong display after using navigation arrows)*/   
-		const dayId = this.props.params.dayId;
-		const dayFromDayId = parseInt(dayId.slice(0, 2));
-		const monthFromDayId = dayId.slice(3, 4);
-		const yearFromDayId = dayId.slice(4);
-		//console.log(dayPosts);
+
+
 		return (
 			<div className='day'>
 				
@@ -101,7 +92,7 @@ class Day extends Component {
 						<form ref='formSubmitRef' onSubmit={this.handleFormSubmit}>
 							<textarea  ref={this.textRef} placeholder='treść nowej wiadomości'/>
 							<div className="controls">
-								<label id='notes' ><input type="checkbox" defaultChecked={true} value='notes' onChange={this.handleChangeNotes} />notes</label>
+								<label id='notes' ><input type="checkbox" checked={this.state.checkboxNotesActive} value='notes' onChange={this.handleChangeNotes} />notes</label>
 								<label id='handover' ><input type="checkbox" value='handover' onChange={this.handleChangeHandover} checked={this.state.handoverChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />handover</label>
 								<label id='lookbook' ><input type="checkbox" value='lookbook' onChange={this.handleChangeLookbook} checked={this.state.lookbookChecked} disabled={(this.state.checkboxNotesActive)? "disabled" : ""} />lookbook</label>
 								<input id='sub' type='submit' value='zapisz'/>

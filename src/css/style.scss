@@ -359,6 +359,8 @@ body {
 							text-transform: uppercase;
 							font-size: .8em;
 						}
+						background-color: white;
+						transition: background-color 400ms;
 						width: 100%;
 						height: 90%;
 						border-radius: 0px 0px 10px 10px;
@@ -431,6 +433,8 @@ body {
 						}
 					}
 					ul.allPostList {
+						background-color: white;
+
 					}
 					ul.notesPostList {
 						background-color: lightblue;

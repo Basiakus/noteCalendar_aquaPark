@@ -264,6 +264,8 @@ body {
                 background-color: green;
                 border-radius: 0px 10px 0px 0px; }
           body .navigation .day .postsPanel .allLists ul {
+            background-color: white;
+            transition: background-color 400ms;
             width: 100%;
             height: 90%;
             border-radius: 0px 0px 10px 10px;
@@ -329,6 +331,8 @@ body {
                   body .navigation .day .postsPanel .allLists ul li .editPosterActive form textarea {
                     width: 40%;
                     height: 50%; }
+          body .navigation .day .postsPanel .allLists ul.allPostList {
+            background-color: white; }
           body .navigation .day .postsPanel .allLists ul.notesPostList {
             background-color: lightblue; }
           body .navigation .day .postsPanel .allLists ul.handoverPostList {
